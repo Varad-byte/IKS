@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ॐ भारतीय पंचांग | Ancient Indian Vedic Calendar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700;900&family=Cinzel+Decorative:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+:root{
+  --bg-deep:#060300;--bg-dark:#100700;--bg-card:#160900;--bg-card2:#1e0e03;
+  --gold:#C8973A;--gold-bright:#F0C060;--gold-dim:#7a5e28;--gold-pale:#3a2d12;
+  --saffron:#FF9933;--deep-red:#8B1515;--maroon:#5a0a0a;
+  --cream:#F5E6C8;--cream-dim:#b89860;--cream-faint:#6a5030;
+  --border-gold:#7a5e28;--glow-gold:rgba(200,151,58,0.25);
+  --planet-shadow:rgba(0,0,0,0.8);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg-deep);color:var(--cream);
+  font-family:'Crimson Pro','Noto Sans Devanagari',serif;
+  overflow-x:hidden;min-height:100vh;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 1 L31 29 L59 30 L31 31 L30 59 L29 31 L1 30 L29 29Z' fill='rgba(200,151,58,0.025)'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 0%,rgba(200,151,58,0.08) 0%,transparent 60%);
+  background-size:60px 60px,100% 100%;
+}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg-deep)}
+::-webkit-scrollbar-thumb{background:var(--border-gold);border-radius:3px}
+ 
+/* ===== HEADER ===== */
+.header{
+  text-align:center;padding:50px 20px 36px;position:relative;
+  background:linear-gradient(180deg,rgba(22,8,0,0.98) 0%,rgba(6,3,0,0.3) 100%);
+  border-bottom:1px solid rgba(122,94,40,0.4);overflow:hidden;
+}
+.header::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(122,94,40,0.08) 60px),
+    repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(122,94,40,0.08) 60px);
+  pointer-events:none;
+}
+.mandala-bg{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:500px;height:500px;opacity:0.04;pointer-events:none;
+  background:
+    radial-gradient(circle,transparent 40%,rgba(200,151,58,1) 41%,rgba(200,151,58,1) 42%,transparent 43%),
+    radial-gradient(circle,transparent 55%,rgba(200,151,58,1) 56%,rgba(200,151,58,1) 57%,transparent 58%),
+    radial-gradient(circle,transparent 68%,rgba(200,151,58,1) 69%,rgba(200,151,58,1) 70%,transparent 71%),
+    radial-gradient(circle,transparent 80%,rgba(200,151,58,1) 81%,rgba(200,151,58,1) 82%,transparent 83%);
+}
+.om-container{position:relative;display:inline-block;margin-bottom:18px}
+.om-ring-outer{
+  width:160px;height:160px;border-radius:50%;
+  border:1px solid rgba(200,151,58,0.25);
+  display:flex;align-items:center;justify-content:center;margin:0 auto;
+  position:relative;
+  box-shadow:0 0 40px rgba(200,151,58,0.15),inset 0 0 40px rgba(200,151,58,0.05);
+}
+.om-ring-outer::before{
+  content:'';position:absolute;
+  width:180px;height:180px;border-radius:50%;
+  border:1px solid rgba(200,151,58,0.15);
+}
+.om-ring-outer::after{
+  content:'';position:absolute;
+  width:200px;height:200px;border-radius:50%;
+  border:1px solid rgba(200,151,58,0.08);
+}
+.om-ring-inner{
+  width:130px;height:130px;border-radius:50%;
+  border:1px solid rgba(200,151,58,0.4);
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle,rgba(200,151,58,0.08) 0%,transparent 70%);
+}
+.om-symbol{
+  font-family:'Noto Sans Devanagari',serif;
+  font-size:80px;line-height:1;color:var(--gold);
+  text-shadow:0 0 30px rgba(200,151,58,0.9),0 0 60px rgba(200,151,58,0.5),0 0 120px rgba(200,151,58,0.2);
+  animation:omGlow 3s ease-in-out infinite alternate;
+  display:block;
+}
+@keyframes omGlow{
+  from{text-shadow:0 0 20px rgba(200,151,58,0.7),0 0 50px rgba(200,151,58,0.3)}
+  to{text-shadow:0 0 40px rgba(200,151,58,1),0 0 80px rgba(200,151,58,0.6),0 0 160px rgba(200,151,58,0.25)}
+}
+.title-deva{
+  font-family:'Noto Sans Devanagari',serif;
+  font-size:46px;font-weight:800;
+  background:linear-gradient(135deg,#c8973a 0%,#f0c060 40%,#c8973a 70%,#e8a840 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:6px;line-height:1.15;margin-bottom:8px;
+}
+.title-eng{
+  font-family:'Cinzel Decorative',serif;
+  font-size:14px;letter-spacing:8px;color:var(--cream-dim);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.title-sub{
+  font-family:'Crimson Pro',serif;font-style:italic;
+  font-size:15px;color:var(--cream-faint);letter-spacing:2px;margin-bottom:20px;
+}
+.header-ornament{
+  display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;
+}
+.orn-line{flex:1;max-width:220px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--border-gold),transparent)}
+.orn-diamond{color:var(--gold);font-size:18px}
+ 
+/* ===== FESTIVAL BANNER ===== */
+.festival-wrap{max-width:960px;margin:24px auto 0;padding:0 20px}
+.festival-banner{
+  background:linear-gradient(135deg,#2d0f00,#4a1a00,#2d0f00);
+  border:1px solid var(--saffron);border-radius:3px;
+  padding:18px 30px;text-align:center;position:relative;overflow:hidden;
+  box-shadow:0 0 30px rgba(255,153,51,0.25),inset 0 0 30px rgba(255,153,51,0.06);
+  animation:festGlow 2.5s ease-in-out infinite alternate;
+}
+@keyframes festGlow{
+  from{box-shadow:0 0 20px rgba(255,153,51,0.15),inset 0 0 15px rgba(255,153,51,0.04)}
+  to{box-shadow:0 0 50px rgba(255,153,51,0.45),inset 0 0 30px rgba(255,153,51,0.1)}
+}
+.festival-banner::before{
+  content:'✦ ✦ ✦';position:absolute;top:8px;left:50%;transform:translateX(-50%);
+  color:rgba(255,153,51,0.3);letter-spacing:20px;font-size:10px;
+}
+.fest-badge{
+  display:inline-block;background:rgba(255,153,51,0.15);
+  border:1px solid rgba(255,153,51,0.4);border-radius:2px;
+  padding:2px 12px;font-family:'Cinzel Decorative',serif;
+  font-size:9px;letter-spacing:3px;color:var(--saffron);margin-bottom:8px;
+}
+.fest-name-deva{
+  font-family:'Noto Sans Devanagari',serif;font-size:34px;font-weight:800;
+  color:var(--saffron);text-shadow:0 0 20px rgba(255,153,51,0.4);
+  line-height:1.2;
+}
+.fest-name-eng{font-size:16px;color:var(--cream-dim);margin-top:4px}
+.fest-desc{font-size:13px;color:var(--cream-faint);margin-top:4px;font-style:italic}
+.no-festival-note{
+  text-align:center;font-size:13px;color:var(--cream-faint);
+  font-family:'Cinzel Decorative',serif;letter-spacing:2px;padding:10px;
+}
+ 
+/* ===== SECTIONS ===== */
+.section{max-width:1160px;margin:40px auto;padding:0 20px}
+.section-head{text-align:center;margin-bottom:28px}
+.section-title-wrap{
+  display:inline-flex;align-items:center;gap:16px;
+}
+.sec-line{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--border-gold))}
+.sec-line.right{background:linear-gradient(90deg,var(--border-gold),transparent)}
+.section-title{
+  font-family:'Cinzel Decorative',serif;font-size:16px;
+  color:var(--gold);letter-spacing:5px;text-transform:uppercase;
+}
+.section-sub{
+  font-family:'Noto Sans Devanagari',serif;font-size:20px;
+  color:var(--cream-dim);margin-top:6px;
+}
+ 
+/* ===== PANCHANG GRID ===== */
+.panchang-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:14px;margin-bottom:20px;
+}
+.p-card{
+  background:var(--bg-card);border:1px solid var(--border-gold);
+  border-radius:3px;padding:18px 20px;position:relative;overflow:hidden;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.p-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(200,151,58,0.12);
+}
+.p-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.p-card-icon{
+  position:absolute;top:14px;right:14px;
+  font-size:36px;opacity:0.08;line-height:1;
+  font-family:'Noto Sans Devanagari',serif;
+}
+.p-label{
+  font-family:'Cinzel Decorative',serif;font-size:9px;
+  letter-spacing:3px;color:var(--gold-dim);text-transform:uppercase;
+  margin-bottom:6px;
+}
+.p-value-deva{
+  font-family:'Noto Sans Devanagari',serif;font-size:30px;
+  font-weight:700;color:var(--gold-bright);line-height:1.15;
+}
+.p-value-eng{font-size:15px;color:var(--cream-dim);margin-top:3px}
+.p-detail{font-size:12px;color:var(--cream-faint);margin-top:6px;line-height:1.5}
+.p-badge{
+  display:inline-block;background:rgba(200,151,58,0.1);
+  border:1px solid rgba(200,151,58,0.25);border-radius:20px;
+  padding:2px 10px;font-size:11px;color:var(--gold-dim);margin-top:6px;
+}
+.paksha-wrap{display:flex;align-items:center;gap:10px}
+.moon-icon{font-size:28px}
+.sun-times-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:2px;overflow:hidden}
+.sun-cell{padding:10px 14px;text-align:center}
+.sun-cell:first-child{border-right:1px solid rgba(122,94,40,0.3)}
+.sun-cell-label{font-family:'Cinzel Decorative',serif;font-size:8px;letter-spacing:2px;color:var(--gold-dim)}
+.sun-cell-val{
+  font-family:'Cinzel Decorative',serif;font-size:22px;
+  color:var(--saffron);margin-top:4px;
+}
+.sun-cell-deva{font-family:'Noto Sans Devanagari',serif;font-size:12px;color:var(--cream-faint)}
+ 
+/* ===== ADHIK MASA CARD ===== */
+.adhik-card{
+  background:linear-gradient(135deg,#2a0800,#400f00);
+  border:1px solid #8b2020;border-radius:3px;
+  padding:16px 20px;margin-bottom:14px;
+  display:flex;align-items:center;gap:16px;
+}
+.adhik-icon{font-size:32px}
+.adhik-text-main{font-family:'Noto Sans Devanagari',serif;font-size:22px;font-weight:700;color:#ff7070}
+.adhik-text-sub{font-size:13px;color:#c06060;margin-top:2px}
+ 
+/* ===== RASHI ROW ===== */
+.rashi-row{
+  display:flex;gap:8px;overflow-x:auto;padding:4px 0 8px;
+  scrollbar-width:thin;scrollbar-color:var(--border-gold) transparent;
+}
+.rashi-chip{
+  flex-shrink:0;background:var(--bg-card2);
+  border:1px solid rgba(122,94,40,0.35);border-radius:3px;
+  padding:6px 12px;text-align:center;cursor:default;
+  transition:background 0.2s;
+}
+.rashi-chip.sun-here{background:rgba(255,153,51,0.1);border-color:var(--saffron)}
+.rashi-chip.moon-here{background:rgba(200,151,58,0.1);border-color:var(--gold)}
+.rashi-name{font-family:'Noto Sans Devanagari',serif;font-size:14px;color:var(--gold)}
+.rashi-eng{font-size:9px;color:var(--cream-faint);letter-spacing:1px}
+.rashi-symbol{font-size:16px;display:block}
+ 
+/* ===== DATE INPUT ===== */
+.input-panel{
+  background:var(--bg-card);border:1px solid var(--border-gold);
+  border-radius:3px;padding:24px;
+}
+.input-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:16px}
+.input-group{display:flex;flex-direction:column;gap:5px}
+.input-label{
+  font-family:'Cinzel Decorative',serif;font-size:9px;
+  letter-spacing:2px;color:var(--gold-dim);text-transform:uppercase;
+}
+.inp{
+  background:var(--bg-dark,#080400);border:1px solid var(--border-gold);
+  border-radius:2px;padding:9px 12px;color:var(--cream);
+  font-family:'Crimson Pro',serif;font-size:16px;outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+.inp:focus{border-color:var(--gold);box-shadow:0 0 10px var(--glow-gold)}
+.inp-select{
+  background:var(--bg-dark,#080400);border:1px solid var(--border-gold);
+  border-radius:2px;padding:9px 12px;color:var(--cream);
+  font-family:'Crimson Pro',serif;font-size:16px;outline:none;
+  cursor:pointer;
+}
+.btn-calc{
+  background:linear-gradient(135deg,#7a5e28,#c8973a,#7a5e28);
+  border:none;border-radius:3px;padding:12px 28px;
+  color:#080400;font-family:'Cinzel Decorative',serif;
+  font-size:12px;letter-spacing:3px;cursor:pointer;
+  transition:all 0.3s;width:100%;text-transform:uppercase;
+}
+.btn-calc:hover{
+  background:linear-gradient(135deg,#c8973a,#f0c060,#c8973a);
+  box-shadow:0 0 20px var(--glow-gold);
+}
+ 
+/* ===== CALENDAR ===== */
+.calendar-box{
+  background:var(--bg-card);border:1px solid var(--border-gold);
+  border-radius:3px;overflow:hidden;
+}
+.cal-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;background:rgba(200,151,58,0.04);
+  border-bottom:1px solid rgba(122,94,40,0.3);
+}
+.cal-nav-btn{
+  background:none;border:1px solid var(--border-gold);color:var(--gold);
+  padding:5px 14px;cursor:pointer;
+  font-family:'Cinzel Decorative',serif;font-size:11px;
+  border-radius:2px;transition:all 0.2s;letter-spacing:1px;
+}
+.cal-nav-btn:hover{background:rgba(200,151,58,0.1)}
+.cal-month-title{text-align:center}
+.cal-month-eng{
+  font-family:'Cinzel Decorative',serif;font-size:16px;color:var(--gold-bright)
+}
+.cal-month-deva{
+  font-family:'Noto Sans Devanagari',serif;font-size:16px;color:var(--cream-dim)
+}
+.cal-head-row{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  border-bottom:1px solid rgba(122,94,40,0.3);
+  background:rgba(122,94,40,0.06);
+}
+.cal-head-cell{
+  padding:8px 4px;text-align:center;
+  font-family:'Cinzel Decorative',serif;font-size:8px;
+  letter-spacing:2px;color:var(--gold-dim);
+}
+.cal-body{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-cell{
+  border-right:1px solid rgba(122,94,40,0.15);
+  border-bottom:1px solid rgba(122,94,40,0.15);
+  padding:6px;min-height:74px;cursor:pointer;
+  transition:background 0.15s;
+  position:relative;
+}
+.cal-cell:hover{background:rgba(200,151,58,0.06)}
+.cal-cell.empty{background:rgba(0,0,0,0.2);cursor:default}
+.cal-cell.today{
+  background:rgba(200,151,58,0.1);
+  outline:1px solid var(--gold-dim);outline-offset:-1px;
+}
+.cal-cell.fest-day{background:rgba(255,153,51,0.06)}
+.cal-date-num{
+  font-family:'Cinzel Decorative',serif;font-size:15px;
+  color:var(--cream);margin-bottom:2px;
+}
+.cal-tithi-small{
+  font-family:'Noto Sans Devanagari',serif;font-size:10px;color:var(--gold-dim);
+  line-height:1.3;
+}
+.cal-fest-small{
+  font-family:'Noto Sans Devanagari',serif;font-size:9px;
+  color:var(--saffron);margin-top:2px;line-height:1.3;font-weight:700;
+}
+.cal-nakshatra-small{font-size:9px;color:var(--cream-faint);margin-top:1px}
+ 
+/* ===== 3D SOLAR SYSTEM ===== */
+.solar-wrap{
+  position:relative;width:100%;height:580px;
+  background:#000813;border:1px solid var(--border-gold);border-radius:3px;overflow:hidden;
+}
+#solarCanvas{display:block;width:100%!important;height:100%!important}
+.solar-hint{
+  position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  font-family:'Cinzel Decorative',serif;font-size:10px;
+  letter-spacing:2px;color:rgba(200,151,58,0.5);white-space:nowrap;
+}
+.planet-modal{
+  position:absolute;top:16px;right:16px;width:280px;
+  background:rgba(8,4,0,0.97);border:1px solid var(--gold);
+  border-radius:3px;padding:20px;display:none;z-index:20;
+  backdrop-filter:blur(12px);
+}
+.planet-modal.show{display:block;animation:mFade 0.3s ease}
+@keyframes mFade{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+.modal-close{
+  position:absolute;top:10px;right:14px;color:var(--gold-dim);
+  cursor:pointer;font-size:20px;line-height:1;font-family:sans-serif;
+}
+.modal-close:hover{color:var(--gold)}
+.modal-planet-name{
+  font-family:'Cinzel Decorative',serif;font-size:20px;
+  color:var(--gold-bright);margin-bottom:2px;
+}
+.modal-planet-deva{
+  font-family:'Noto Sans Devanagari',serif;font-size:18px;
+  color:var(--cream-dim);margin-bottom:14px;
+}
+.modal-stat{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:7px 0;border-bottom:1px solid rgba(122,94,40,0.25);
+}
+.modal-stat-lbl{font-size:10px;letter-spacing:1px;color:var(--gold-dim)}
+.modal-stat-val{font-family:'Cinzel Decorative',serif;font-size:12px;color:var(--cream)}
+.modal-special{
+  margin-top:12px;font-size:13px;color:var(--cream-dim);
+  line-height:1.6;font-style:italic;
+}
+.modal-color-dot{
+  display:inline-block;width:10px;height:10px;border-radius:50%;
+  margin-right:6px;vertical-align:middle;
+}
+ 
+/* ===== PLANET POSITION TABLE ===== */
+.pos-table-wrap{
+  background:var(--bg-card);border:1px solid var(--border-gold);
+  border-radius:3px;overflow:hidden;
+}
+.pos-table{width:100%;border-collapse:collapse}
+.pos-table th{
+  font-family:'Cinzel Decorative',serif;font-size:9px;
+  letter-spacing:2px;color:var(--gold-dim);text-align:left;
+  padding:11px 14px;border-bottom:1px solid var(--border-gold);
+  background:rgba(200,151,58,0.04);text-transform:uppercase;
+}
+.pos-table td{
+  padding:11px 14px;border-bottom:1px solid rgba(122,94,40,0.15);
+  font-size:14px;color:var(--cream);
+}
+.pos-table tr:hover td{background:rgba(200,151,58,0.03)}
+.planet-name-td{
+  font-family:'Noto Sans Devanagari',serif;font-size:17px;
+  color:var(--gold-bright);
+}
+.planet-eng-td{font-size:11px;color:var(--gold-dim);display:block}
+.pos-highlight{color:var(--saffron)!important;font-weight:600}
+.deg-val{font-family:'Cinzel Decorative',serif;font-size:13px}
+.above-horizon{color:#6fc;font-size:11px}
+.below-horizon{color:#f66;font-size:11px}
+.no-data{color:var(--cream-faint);font-size:13px;font-style:italic}
+ 
+/* ===== DIVIDER ===== */
+.divider{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,transparent,var(--border-gold),transparent);
+  margin:0;
+}
+ 
+/* ===== INFO BOX ===== */
+.info-box{
+  background:rgba(200,151,58,0.04);border:1px solid rgba(122,94,40,0.3);
+  border-radius:3px;padding:16px 20px;
+  font-size:14px;color:var(--cream-faint);line-height:1.7;
+}
+.info-box strong{color:var(--gold-dim)}
+ 
+/* ===== FOOTER ===== */
+.footer{
+  text-align:center;padding:40px 20px;
+  border-top:1px solid rgba(122,94,40,0.25);
+  margin-top:60px;
+}
+.footer-om{font-family:'Noto Sans Devanagari',serif;font-size:28px;color:var(--gold-dim);margin-bottom:8px}
+.footer-text{font-family:'Cinzel Decorative',serif;font-size:10px;letter-spacing:3px;color:var(--cream-faint)}
+.footer-note{font-size:12px;color:var(--cream-faint);margin-top:8px;font-style:italic}
+ 
+/* ===== RESPONSIVE ===== */
+@media(max-width:640px){
+  .om-symbol{font-size:60px}
+  .om-ring-outer{width:120px;height:120px}
+  .title-deva{font-size:30px;letter-spacing:3px}
+  .title-eng{font-size:11px;letter-spacing:4px}
+  .solar-wrap{height:360px}
+  .planet-modal{width:220px;padding:14px}
+  .panchang-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .cal-cell{min-height:58px}
+  .cal-date-num{font-size:13px}
+}
+
+/* ===== MUHURTA ===== */
+.muhurta-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;
+}
+.m-card {
+  background: var(--bg-card); border: 1px solid var(--border-gold);
+  border-radius: 3px; padding: 16px; position: relative; overflow: hidden;
+}
+.m-card-title {
+  font-family: 'Cinzel Decorative', serif; font-size: 11px;
+  letter-spacing: 2px; color: var(--gold-dim); margin-bottom: 12px;
+  text-transform: uppercase; border-bottom: 1px solid rgba(122,94,40,0.2); padding-bottom: 6px;
+}
+.m-slot {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 10px; border-radius: 2px; margin-bottom: 4px;
+  background: rgba(0,0,0,0.2); border-left: 3px solid transparent;
+  transition: all 0.2s;
+}
+.m-slot.active {
+  background: rgba(200,151,58,0.15); box-shadow: inset 0 0 10px rgba(200,151,58,0.1);
+  border-left-color: var(--gold-bright);
+}
+.m-slot-name { font-family: 'Noto Sans Devanagari', serif; font-size: 16px; font-weight: 600; }
+.m-slot-eng { font-size: 11px; opacity: 0.8; margin-left: 6px; }
+.m-slot-time { font-family: 'Cinzel Decorative', serif; font-size: 12px; color: var(--cream); }
+
+.c-good { color: #66bb6a; } .c-bad { color: #ef5350; } .c-neutral { color: #ffa726; }
+.m-slot.c-good { border-left-color: #4CAF50; }
+.m-slot.c-bad { border-left-color: #F44336; }
+.m-slot.c-neutral { border-left-color: #FF9800; }
+
+.m-highlight-box {
+  background: linear-gradient(135deg, rgba(200,151,58,0.1) 0%, rgba(200,151,58,0.02) 100%);
+  border: 1px solid var(--gold); border-radius: 3px; padding: 16px;
+  text-align: center; margin-bottom: 14px; position: relative;
+  box-shadow: 0 0 20px rgba(200,151,58,0.08);
+}
+.m-hb-title { font-family: 'Noto Sans Devanagari', serif; font-size: 24px; color: var(--gold-bright); font-weight: 700;}
+.m-hb-time { font-family: 'Cinzel Decorative', serif; font-size: 18px; color: var(--cream); margin-top: 6px; letter-spacing: 1px;}
+.m-hb-desc { font-size: 12px; color: var(--gold-dim); margin-top: 4px; font-style: italic; }
+</style>
+</head>
+<body>
+ 
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="mandala-bg"></div>
+  <div class="om-container">
+    <div class="om-ring-outer">
+      <div class="om-ring-inner">
+        <span class="om-symbol">ॐ</span>
+      </div>
+    </div>
+  </div>
+  <div class="title-deva">भारतीय पंचांग</div>
+  <div class="title-eng">Bhāratīya Pañcāṅga</div>
+  <div class="title-sub">Ancient Indian Vedic Calendar System</div>
+  <div class="header-ornament">
+    <div class="orn-line"></div>
+    <span class="orn-diamond">✦</span>
+    <div class="orn-line right"></div>
+  </div>
+</header>
+ 
+<!-- ===== FESTIVAL BANNER ===== -->
+<div class="festival-wrap">
+  <div id="festivalBanner"></div>
+</div>
+ 
+<!-- ===== TODAY'S PANCHANG ===== -->
+<section class="section" id="panchaSection">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Pañcāṅga · पंचांग</div>
+      <div class="sec-line right"></div>
+    </div>
+    <div class="section-sub" id="todayDateDisplay">आज का दिनांक</div>
+  </div>
+  <div id="adhikMasaBanner"></div>
+
+  <div class="panchang-grid" id="panchaGrid">
+    <div class="p-card"><div class="p-label">Loading...</div><div class="p-value-deva">गणना हो रही है</div></div>
+  </div>
+  <div style="margin-top:14px">
+    <div class="p-label" style="margin-bottom:10px;font-family:'Cinzel Decorative',serif;font-size:9px;letter-spacing:3px;color:var(--gold-dim)">RASHI CHAKRA · राशि चक्र</div>
+    <div class="rashi-row" id="rashiRow"></div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+
+<!-- ===== MUHURTA (AUSPICIOUS TIMINGS) ===== -->
+<section class="section" id="muhurtaSection">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Muhurta · मुहूर्त</div>
+      <div class="sec-line right"></div>
+    </div>
+    <div class="section-sub">Auspicious & Inauspicious Timings</div>
+  </div>
+  <div id="muhurtaGrid">
+    <div class="p-card" style="text-align:center"><div class="p-label">Loading Muhurta...</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== KUNDALI & TARA BALA CALCULATOR ===== -->
+<section class="section" id="kundaliSection">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Kundali & Tara Bala · जन्म कुण्डली</div>
+      <div class="sec-line right"></div>
+    </div>
+  </div>
+  <div class="input-panel">
+    <div class="input-grid">
+      <div class="input-group">
+        <label class="input-label">Date of Birth</label>
+        <input type="date" id="kundaliDate" class="inp">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Time of Birth (IST)</label>
+        <input type="time" id="kundaliTime" class="inp" value="12:00">
+      </div>
+      <div class="input-group">
+        <label class="input-label">City (Presets)</label>
+        <select id="kundaliCity" class="inp-select" onchange="updateKundaliLatLon()">
+          <option value="">Custom Coordinates...</option>
+          <option value="19.0760,72.8777">Mumbai</option>
+          <option value="28.7041,77.1025">Delhi</option>
+          <option value="12.9716,77.5946">Bangalore</option>
+          <option value="13.0827,80.2707">Chennai</option>
+          <option value="22.5726,88.3639">Kolkata</option>
+          <option value="17.3850,78.4867">Hyderabad</option>
+          <option value="26.9124,75.7873">Jaipur</option>
+          <option value="23.0225,72.5714">Ahmedabad</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label class="input-label">Latitude</label>
+        <input type="number" id="kundaliLat" class="inp" step="0.0001" placeholder="19.0760">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Longitude</label>
+        <input type="number" id="kundaliLon" class="inp" step="0.0001" placeholder="72.8777">
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calculateKundali()">⋯ Generate Kundali ⋯</button>
+    
+    <div id="kundaliResult" style="margin-top:20px; display:none; background: rgba(200,151,58,0.05); border: 1px solid var(--border-gold); border-radius: 3px; padding: 18px 20px;">
+      <div style="display:flex; flex-wrap:wrap; gap: 24px; margin-bottom: 20px;">
+        <div style="flex:1; min-width:200px">
+          <div style="font-size:10px; color:var(--cream-faint); letter-spacing:1px; margin-bottom:4px">BIRTH DETAILS</div>
+          <div style="font-family:'Noto Sans Devanagari',serif; font-size:16px; color:var(--gold-bright)">Janma Nakshatra: <span id="kNak"></span></div>
+          <div style="font-family:'Noto Sans Devanagari',serif; font-size:16px; color:var(--gold-bright)">Lagna (Ascendant): <span id="kLagna"></span></div>
+        </div>
+        <div style="flex:1; min-width:200px; padding-left:14px; border-left: 1px solid rgba(122,94,40,0.3)">
+          <div style="font-size:10px; color:var(--cream-faint); letter-spacing:1px; margin-bottom:4px">TODAY'S TARA BALA (ENERGY)</div>
+          <div id="kTaraBala" style="font-family:'Noto Sans Devanagari',serif; font-size:22px; font-weight:700"></div>
+          <div id="kTaraDesc" style="font-size:13px; font-style:italic; margin-top:4px"></div>
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid rgba(122,94,40,0.2); padding-top: 16px;">
+        <div style="font-family:'Cinzel Decorative',serif; font-size:13px; color:var(--gold-bright); margin-bottom:12px; letter-spacing:1px;">LIFE & FUTURE PREDICTIONS (भविष्यफल)</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+          <div style="background: rgba(0,0,0,0.2); padding: 14px; border-radius: 2px; border-left: 2px solid var(--saffron);">
+            <div style="font-size:10px; color:var(--gold-dim); margin-bottom:4px; letter-spacing:1px;">PERSONALITY TRAITS</div>
+            <div id="kTraits" style="font-size:13px; color:var(--cream); line-height:1.6;"></div>
+          </div>
+          <div style="background: rgba(0,0,0,0.2); padding: 14px; border-radius: 2px; border-left: 2px solid #66bb6a;">
+            <div style="font-size:10px; color:var(--gold-dim); margin-bottom:4px; letter-spacing:1px;">LIFE PATH & DESTINY</div>
+            <div id="kFuture" style="font-size:13px; color:var(--cream); line-height:1.6;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+ 
+<!-- ===== CUSTOM DATE PANCHANG ===== -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Custom Date · तिथि गणना</div>
+      <div class="sec-line right"></div>
+    </div>
+  </div>
+  <div class="input-panel">
+    <div class="input-grid">
+      <div class="input-group">
+        <label class="input-label">Date · तारीख</label>
+        <input type="date" id="customDate" class="inp">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Time (IST) · समय</label>
+        <input type="time" id="customTime" class="inp" value="06:00">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Latitude · अक्षांश</label>
+        <input type="number" id="customLat" class="inp" value="19.0760" step="0.0001" placeholder="19.0760">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Longitude · देशांतर</label>
+        <input type="number" id="customLon" class="inp" value="72.8777" step="0.0001" placeholder="72.8777">
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calculateCustomDate()">⋯ Calculate Panchang · पंचांग गणना करें ⋯</button>
+    <div id="customResult" style="margin-top:20px"></div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- ===== CALENDAR GRID ===== -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Calendar · कैलेंडर</div>
+      <div class="sec-line right"></div>
+    </div>
+  </div>
+  <div class="calendar-box">
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="changeCalMonth(-1)">◁ Prev</button>
+      <div class="cal-month-title">
+        <div class="cal-month-eng" id="calMonthEng"></div>
+        <div class="cal-month-deva" id="calMonthDeva"></div>
+      </div>
+      <button class="cal-nav-btn" onclick="changeCalMonth(1)">Next ▷</button>
+    </div>
+    <div class="cal-head-row">
+      <div class="cal-head-cell">Sun</div>
+      <div class="cal-head-cell">Mon</div>
+      <div class="cal-head-cell">Tue</div>
+      <div class="cal-head-cell">Wed</div>
+      <div class="cal-head-cell">Thu</div>
+      <div class="cal-head-cell">Fri</div>
+      <div class="cal-head-cell">Sat</div>
+    </div>
+    <div class="cal-body" id="calBody"></div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- ===== 3D SOLAR SYSTEM ===== -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Solar System · ग्रह मंडल</div>
+      <div class="sec-line right"></div>
+    </div>
+    <div class="section-sub">Click a planet · ग्रह पर क्लिक करें</div>
+  </div>
+  <div class="solar-wrap">
+    <canvas id="solarCanvas"></canvas>
+    <div class="planet-modal" id="planetModal">
+      <span class="modal-close" onclick="closePlanetModal()">×</span>
+      <div class="modal-planet-name" id="mName"></div>
+      <div class="modal-planet-deva" id="mDeva"></div>
+      <div class="modal-stat"><span class="modal-stat-lbl">Temperature</span><span class="modal-stat-val" id="mTemp"></span></div>
+      <div class="modal-stat"><span class="modal-stat-lbl">Year (Earth Days)</span><span class="modal-stat-val" id="mYear"></span></div>
+      <div class="modal-stat"><span class="modal-stat-lbl">Distance from Sun</span><span class="modal-stat-val" id="mDist"></span></div>
+      <div class="modal-stat"><span class="modal-stat-lbl">Vedic Name</span><span class="modal-stat-val" id="mVedic"></span></div>
+      <div class="modal-special" id="mSpecial"></div>
+    </div>
+    <div class="solar-hint">DRAG TO ROTATE · CLICK PLANET FOR INFO · SCROLL TO ZOOM</div>
+  </div>
+</section>
+ 
+<div class="divider"></div>
+ 
+<!-- ===== PLANET POSITION CALCULATOR ===== -->
+<section class="section">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Planet Positions · ग्रह स्थिति</div>
+      <div class="sec-line right"></div>
+    </div>
+    <div class="section-sub">Geocentric Altitude & Azimuth · भूकेंद्रीय स्थिति</div>
+  </div>
+  <div class="input-panel" style="margin-bottom:14px">
+    <div class="input-grid">
+      <div class="input-group">
+        <label class="input-label">Date</label>
+        <input type="date" id="posDate" class="inp">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Time (IST)</label>
+        <input type="time" id="posTime" class="inp" value="12:00">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Latitude</label>
+        <input type="number" id="posLat" class="inp" value="19.0760" step="0.001">
+      </div>
+      <div class="input-group">
+        <label class="input-label">Longitude</label>
+        <input type="number" id="posLon" class="inp" value="72.8777" step="0.001">
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calcPlanetPositions()">⋯ Compute Planet Positions · ग्रह गणना ⋯</button>
+  </div>
+  <div class="pos-table-wrap">
+    <table class="pos-table" id="posTable">
+      <thead>
+        <tr>
+          <th>Planet · ग्रह</th>
+          <th>Ecliptic Lon°</th>
+          <th>Ecliptic Lat°</th>
+          <th>RA (h m)</th>
+          <th>Dec°</th>
+          <th>Altitude°</th>
+          <th>Azimuth°</th>
+          <th>Rashi</th>
+        </tr>
+      </thead>
+      <tbody id="posTableBody">
+        <tr><td colspan="8" class="no-data" style="text-align:center;padding:30px">Enter date and location, then compute</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="info-box" style="margin-top:14px">
+    <strong>Calculation Method:</strong> Jean Meeus "Astronomical Algorithms" (VSOP87 based). 
+    Solar position: Ch.25 accurate to 0.01°. Lunar position: Ch.47 ELP2000 (60+ correction terms). 
+    Planetary positions: Keplerian orbital elements with perturbation corrections. 
+    Ayanamsha: Lahiri/Chitrapaksha (≈23.85° at J2000.0). Sunrise/Sunset: NOAA algorithm. 
+    All values are for Indian Standard Time (UTC+5:30).
+  </div>
+</section>
+ 
+<!-- ===== VEDIC SHLOKAS ===== -->
+<section class="section" style="max-width:960px">
+  <div class="section-head">
+    <div class="section-title-wrap">
+      <div class="sec-line"></div>
+      <div class="section-title">Vedic Shlokas · वैदिक श्लोक</div>
+      <div class="sec-line right"></div>
+    </div>
+    <div class="section-sub">शाश्वत वैदिक मंत्र एवं श्लोक</div>
+  </div>
+
+  <style>
+  .shlok-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px;margin-top:8px}
+  .shlok-card{
+    background:linear-gradient(135deg,var(--bg-card),var(--bg-card2));
+    border:1px solid var(--border-gold);border-radius:4px;padding:24px 26px;
+    position:relative;overflow:hidden;
+  }
+  .shlok-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--saffron),var(--gold),transparent);
+  }
+  .shlok-source{
+    font-family:'Cinzel Decorative',serif;font-size:8.5px;letter-spacing:3px;
+    color:var(--saffron);text-transform:uppercase;margin-bottom:14px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .shlok-source::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,rgba(255,153,51,0.4),transparent)}
+  .shlok-text{
+    font-family:'Noto Sans Devanagari',serif;font-size:18px;line-height:1.95;
+    color:var(--gold-bright);font-weight:600;margin-bottom:14px;
+    text-shadow:0 0 20px rgba(200,151,58,0.15);
+  }
+  .shlok-meaning{
+    font-family:'Crimson Pro',serif;font-style:italic;font-size:14px;
+    color:var(--cream-dim);line-height:1.7;border-top:1px solid rgba(122,94,40,0.25);
+    padding-top:12px;margin-top:4px;
+  }
+  .shlok-num{
+    position:absolute;top:14px;right:18px;
+    font-family:'Cinzel Decorative',serif;font-size:30px;
+    color:rgba(200,151,58,0.06);font-weight:900;line-height:1;
+  }
+  @media(max-width:520px){.shlok-grid{grid-template-columns:1fr}.shlok-text{font-size:15px}}
+  </style>
+
+  <div class="shlok-grid">
+
+    <div class="shlok-card">
+      <div class="shlok-num">१</div>
+      <div class="shlok-source">ऋग्वेद · मण्डल ३.६२ · गायत्री मंत्र</div>
+      <div class="shlok-text">
+        ॐ भूर्भुवः स्वः ।<br>
+        तत्सवितुर्वरेण्यं<br>
+        भर्गो देवस्य धीमहि ।<br>
+        धियो यो नः प्रचोदयात् ॥
+      </div>
+      <div class="shlok-meaning">
+        We meditate upon the divine light of the supreme Sun (Savita). May that radiant splendour illumine and inspire our intellect towards truth and righteousness.
+      </div>
+    </div>
+
+    <div class="shlok-card">
+      <div class="shlok-num">२</div>
+      <div class="shlok-source">श्रीमद्भगवद्गीता · अध्याय ४, श्लोक ७–८</div>
+      <div class="shlok-text">
+        यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।<br>
+        अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम् ॥<br>
+        परित्राणाय साधूनां विनाशाय च दुष्कृताम् ।<br>
+        धर्मसंस्थापनार्थाय सम्भवामि युगे युगे ॥
+      </div>
+      <div class="shlok-meaning">
+        Whenever righteousness declines and unrighteousness rises, I manifest Myself. For the protection of the virtuous, destruction of the wicked, and establishment of Dharma — I incarnate age after age.
+      </div>
+    </div>
+
+    <div class="shlok-card">
+      <div class="shlok-num">३</div>
+      <div class="shlok-source">बृहदारण्यकोपनिषद् · सार्वभौमिक शांति मंत्र</div>
+      <div class="shlok-text">
+        सर्वे भवन्तु सुखिनः ।<br>
+        सर्वे सन्तु निरामयाः ।<br>
+        सर्वे भद्राणि पश्यन्तु ।<br>
+        मा कश्चिद् दुःखभाग्भवेत् ॥
+      </div>
+      <div class="shlok-meaning">
+        May all beings be happy. May all beings be free from disease. May all behold what is auspicious. May none suffer sorrow or pain.
+      </div>
+    </div>
+
+    <div class="shlok-card">
+      <div class="shlok-num">४</div>
+      <div class="shlok-source">गणेश श्लोक · मुद्गल पुराण</div>
+      <div class="shlok-text">
+        वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>
+        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+      </div>
+      <div class="shlok-meaning">
+        O Lord Ganesha of curved trunk and mighty form, whose brilliance equals ten million suns — please make all my works free from obstacles, always and forever.
+      </div>
+    </div>
+
+    <div class="shlok-card">
+      <div class="shlok-num">५</div>
+      <div class="shlok-source">ईशावास्योपनिषद् · शांति पाठ</div>
+      <div class="shlok-text">
+        ॐ पूर्णमदः पूर्णमिदं पूर्णात्पूर्णमुदच्यते ।<br>
+        पूर्णस्य पूर्णमादाय पूर्णमेवावशिष्यते ॥<br>
+        ॐ शान्तिः शान्तिः शान्तिः ॥
+      </div>
+      <div class="shlok-meaning">
+        That (Brahman) is infinite; this (universe) is infinite. From infinity, infinity has emerged. Even when infinity is taken from infinity, only infinity remains. Om — Peace, Peace, Peace.
+      </div>
+    </div>
+
+    <div class="shlok-card">
+      <div class="shlok-num">६</div>
+      <div class="shlok-source">महाभारत · शांतिपर्व · कालमहिमा</div>
+      <div class="shlok-text">
+        काल: पचति भूतानि काल: संहरते प्रजाः ।<br>
+        काल: सुप्तेषु जागर्ति कालो हि दुरतिक्रमः ॥
+      </div>
+      <div class="shlok-meaning">
+        Time ripens all beings. Time dissolves all creatures. Time is awake even when all sleep. Truly, Time (Kala) is impossible to transcend.
+      </div>
+    </div>
+
+    <div class="shlok-card">
+      <div class="shlok-num">७</div>
+      <div class="shlok-source">आदित्य हृदयम् · वाल्मीकि रामायण · युद्धकाण्ड</div>
+      <div class="shlok-text">
+        आदित्यस्य नमस्कारं ये कुर्वन्ति दिने दिने ।<br>
+        जन्मान्तरसहस्रेषु दारिद्र्यं नोपजायते ॥
+      </div>
+      <div class="shlok-meaning">
+        Those who offer salutation to the Sun God every single day — for them, poverty does not arise across a thousand lifetimes.
+      </div>
+    </div>
+
+    <div class="shlok-card">
+      <div class="shlok-num">८</div>
+      <div class="shlok-source">ज्योतिष शास्त्र · पंचांग महिमा</div>
+      <div class="shlok-text">
+        तिथिर्विष्णुस्तथा वारो नक्षत्रं विष्णुरेव च ।<br>
+        योगश्च करणं चैव सर्वं विष्णुमयं जगत् ॥
+      </div>
+      <div class="shlok-meaning">
+        Tithi is Vishnu, Vara (weekday) is Vishnu, Nakshatra is Vishnu alone. Yoga and Karana are also Vishnu — indeed the entire cosmos is pervaded by Vishnu (the All-Pervading).
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-om">ॐ तत् सत्</div>
+  <div class="footer-text">भारतीय ज्ञान प्रणाली · Indian Knowledge System</div>
+  <div class="footer-note">Calculated using Jean Meeus astronomical algorithms · VSOP87 · ELP2000 · Lahiri Ayanamsha</div>
+</footer>
+
+<script>
+// ============================================================
+// SECTION 1: MATHEMATICAL UTILITIES
+// ============================================================
+const PI2 = Math.PI * 2;
+const to_rad = d => d * Math.PI / 180;
+const to_deg = r => r * 180 / Math.PI;
+const frac = x => x - Math.floor(x);
+const mod360 = x => ((x % 360) + 360) % 360;
+const sin = d => Math.sin(to_rad(d));
+const cos = d => Math.cos(to_rad(d));
+const tan = d => Math.tan(to_rad(d));
+const atan2d = (y,x) => to_deg(Math.atan2(y,x));
+const sind = d => Math.sin(to_rad(d));
+const cosd = d => Math.cos(to_rad(d));
+ 
+// ============================================================
+// SECTION 2: JULIAN DATE
+// ============================================================
+function getJD(year, month, day, hour=0, minute=0, second=0) {
+  if (month <= 2) { year--; month += 12; }
+  const A = Math.floor(year / 100);
+  const B = 2 - A + Math.floor(A / 4);
+  return Math.floor(365.25 * (year + 4716))
+       + Math.floor(30.6001 * (month + 1))
+       + day + B - 1524.5
+       + (hour + minute/60 + second/3600) / 24;
+}
+ 
+function jdFromDate(d) {
+  // d is a Date object in local time; treat as IST
+  return getJD(d.getFullYear(), d.getMonth()+1, d.getDate(),
+               d.getHours(), d.getMinutes(), d.getSeconds());
+}
+ 
+function jdToDate(JD) {
+  let Z = Math.floor(JD + 0.5);
+  const F = JD + 0.5 - Z;
+  let A = Z;
+  if (Z >= 2299161) {
+    const alpha = Math.floor((Z - 1867216.25) / 36524.25);
+    A = Z + 1 + alpha - Math.floor(alpha / 4);
+  }
+  const B = A + 1524;
+  const C = Math.floor((B - 122.1) / 365.25);
+  const D = Math.floor(365.25 * C);
+  const E = Math.floor((B - D) / 30.6001);
+  const day = B - D - Math.floor(30.6001 * E);
+  const month = E < 14 ? E - 1 : E - 13;
+  const year = month > 2 ? C - 4716 : C - 4715;
+  const hour_frac = F * 24;
+  const hour = Math.floor(hour_frac);
+  const min = Math.floor((hour_frac - hour) * 60);
+  return { year, month, day, hour, min };
+}
+ 
+function getT(JD) { return (JD - 2451545.0) / 36525.0; }
+ 
+// ============================================================
+// SECTION 3: SOLAR POSITION (Jean Meeus Ch. 25)
+// Accurate to ~0.01 degrees
+// ============================================================
+function getSunPosition(JD) {
+  const T = getT(JD);
+  const T2 = T * T;
+  const T3 = T2 * T;
+ 
+  // Geometric mean longitude (degrees)
+  let L0 = mod360(280.46646 + 36000.76983 * T + 0.0003032 * T2);
+ 
+  // Mean anomaly (degrees)
+  let M = mod360(357.52911 + 35999.05029 * T - 0.0001537 * T2);
+ 
+  // Equation of center
+  const C = (1.914602 - 0.004817*T - 0.000014*T2) * sind(M)
+           + (0.019993 - 0.000101*T) * sind(2*M)
+           + 0.000289 * sind(3*M);
+ 
+  // Sun's true longitude and anomaly
+  const sunTrueLon = mod360(L0 + C);
+  const v = mod360(M + C);
+ 
+  // Apparent longitude (aberration + nutation)
+  const omega = mod360(125.04 - 1934.136 * T);
+  const lambda = mod360(sunTrueLon - 0.00569 - 0.00478 * sind(omega));
+ 
+  // Obliquity of ecliptic
+  const eps0 = 23 + 26/60 + 21.448/3600
+             - (46.8150/3600)*T - (0.00059/3600)*T2 + (0.001813/3600)*T3;
+  const eps = eps0 + 0.00256 * cosd(omega);
+ 
+  // Right Ascension and Declination
+  const RA = mod360(atan2d(cosd(eps)*sind(lambda), cosd(lambda)));
+  const Dec = to_deg(Math.asin(sind(eps) * sind(lambda)));
+ 
+  // Eccentricity
+  const e = 0.016708634 - 0.000042037*T - 0.0000001267*T2;
+  const R = 1.000001018 * (1 - e*e) / (1 + e * cosd(v));
+ 
+  return {
+    longitude: sunTrueLon,      // Geometric tropical longitude
+    apparentLon: lambda,         // Apparent tropical longitude
+    RA: RA,
+    Dec: Dec,
+    eps: eps,
+    R: R,                        // AU
+    anomaly: v
+  };
+}
+ 
+// ============================================================
+// SECTION 4: LUNAR POSITION (Jean Meeus Ch. 47)
+// ELP2000 theory, accurate to ~10 arcseconds
+// ============================================================
+function getMoonPosition(JD) {
+  const T = getT(JD);
+  const T2 = T*T; const T3 = T2*T; const T4 = T3*T;
+ 
+  let Lp = mod360(218.3164477 + 481267.88123421*T - 0.0015786*T2 + T3/538841 - T4/65194000);
+  let D  = mod360(297.8501921 + 445267.1114034*T - 0.0018819*T2 + T3/545868 - T4/113065000);
+  let M  = mod360(357.5291092 + 35999.0502909*T - 0.0001536*T2 + T3/24490000);
+  let Mp = mod360(134.9633964 + 477198.8675055*T + 0.0087414*T2 + T3/69699 - T4/14712000);
+  let F  = mod360(93.2720950 + 483202.0175233*T - 0.0036539*T2 - T3/3526000 + T4/863310000);
+ 
+  const A1 = mod360(119.75 + 131.849*T);
+  const A2 = mod360(53.09 + 479264.290*T);
+  const A3 = mod360(313.45 + 481266.484*T);
+ 
+  const e  = 1 - 0.002516*T - 0.0000074*T2;
+  const e2 = e*e;
+ 
+  // Main longitude terms [D, M, M', F, coeff(0.001")]
+  const lTerms = [
+    [0,0,1,0,6288774],[2,0,-1,0,1274027],[2,0,0,0,658314],[0,0,2,0,213618],
+    [0,1,0,0,-185116],[0,0,0,2,-114332],[2,0,-2,0,58793],[2,-1,-1,0,57066],
+    [2,0,1,0,53322],[2,-1,0,0,45758],[0,1,-1,0,-40923],[1,0,0,0,-34720],
+    [0,1,1,0,-30383],[2,0,0,-2,15327],[0,0,1,2,-12528],[0,0,1,-2,10980],
+    [4,0,-1,0,10675],[0,0,3,0,10034],[4,0,-2,0,8548],[2,1,-1,0,-7888],
+    [2,1,0,0,-6766],[1,0,-1,0,-5163],[1,1,0,0,4987],[2,-1,1,0,4036],
+    [2,0,2,0,3994],[4,0,0,0,3861],[2,0,-3,0,3665],[0,1,-2,0,-2689],
+    [2,0,-1,2,-2602],[2,-1,-2,0,2390],[1,0,1,0,-2348],[2,-2,0,0,2236],
+    [0,1,2,0,-2120],[0,2,0,0,-2069],[2,-2,-1,0,2048],[2,0,1,-2,-1773],
+    [2,0,0,2,-1595],[4,-1,-1,0,1215],[0,0,2,2,-1110],[3,0,-1,0,-892],
+    [2,1,1,0,-810],[4,-1,-2,0,759],[0,2,-1,0,-713],[2,2,-1,0,-700],
+    [2,1,-2,0,691],[2,-1,0,-2,596],[4,0,1,0,549],[0,0,4,0,537],
+    [4,-1,0,0,520],[1,0,-2,0,-487],[2,1,0,-2,-399],[0,0,2,-2,-381],
+    [1,1,1,0,351],[3,0,-2,0,-340],[4,0,-3,0,330],[2,-1,2,0,327],
+    [0,2,1,0,-323],[1,1,-1,0,299],[2,0,3,0,294]
+  ];
+ 
+  let sumL = 0;
+  for (const [di,mi,mpi,fi,coeff] of lTerms) {
+    let ef = (Math.abs(mi)===1) ? e : (Math.abs(mi)===2) ? e2 : 1;
+    sumL += ef * coeff * sind(di*D + mi*M + mpi*Mp + fi*F);
+  }
+  sumL += 3958*sind(A1) + 1962*sind(Lp-F) + 318*sind(A2);
+ 
+  // Latitude terms
+  const bTerms = [
+    [0,0,0,1,5128122],[0,0,1,1,280602],[0,0,1,-1,277693],[2,0,0,-1,173237],
+    [2,0,-1,1,55413],[2,0,-1,-1,46272],[2,0,0,1,32573],[0,0,2,1,17198],
+    [2,0,1,-1,9266],[0,0,2,-1,8822],[2,-1,0,-1,8216],[2,0,-2,-1,4324],
+    [2,0,1,1,4200],[2,1,0,-1,-3359],[2,-1,-1,1,2463],[2,-1,0,1,2211],
+    [2,-1,-1,-1,2065],[0,1,-1,-1,-1870],[4,0,-1,-1,1828],[0,1,0,1,-1794],
+    [0,0,0,3,-1749],[0,1,-1,1,-1565],[1,0,0,1,-1491],[0,1,1,1,-1475],
+    [0,1,1,-1,-1410],[0,1,0,-1,-1344],[1,0,0,-1,-1335],[0,0,3,1,1107],
+    [4,0,0,-1,1021],[4,0,-1,1,833]
+  ];
+  let sumB = 0;
+  for (const [di,mi,mpi,fi,coeff] of bTerms) {
+    let ef = (Math.abs(mi)===1) ? e : (Math.abs(mi)===2) ? e2 : 1;
+    sumB += ef * coeff * sind(di*D + mi*M + mpi*Mp + fi*F);
+  }
+  sumB -= 2235*sind(Lp) - 382*sind(A3) - 175*sind(A1-F) - 175*sind(A1+F)
+         - 127*sind(Lp-Mp) + 115*sind(Lp+Mp);
+ 
+  // Distance terms
+  const rTerms = [
+    [0,0,1,0,-20905355],[2,0,-1,0,-3699111],[2,0,0,0,-2955968],[0,0,2,0,-569925],
+    [0,1,0,0,48888],[0,0,0,2,-3149],[2,0,-2,0,246158],[2,-1,-1,0,-152138],
+    [2,0,1,0,-170733],[2,-1,0,0,-204586],[0,1,-1,0,-129620],[1,0,0,0,108743],
+    [0,1,1,0,104755],[2,0,0,-2,10321],[0,0,1,-2,79661],[4,0,-1,0,-34782],
+    [0,0,3,0,-23210],[4,0,-2,0,-21636],[2,1,-1,0,24208],[2,1,0,0,30824],
+    [1,0,-1,0,-8379],[1,1,0,0,-16675],[2,-1,1,0,-10445],[2,0,2,0,-11650],
+    [4,0,0,0,14403],[2,0,-3,0,-13897],[0,1,-2,0,-4065],[2,-1,-2,0,5211],
+    [1,0,1,0,-8150],[2,-2,0,0,-1090]
+  ];
+  let sumR = 0;
+  for (const [di,mi,mpi,fi,coeff] of rTerms) {
+    let ef = (Math.abs(mi)===1) ? e : (Math.abs(mi)===2) ? e2 : 1;
+    sumR += ef * coeff * cosd(di*D + mi*M + mpi*Mp + fi*F);
+  }
+ 
+  const moonLon = mod360(Lp + sumL/1000000);
+  const moonLat = sumB / 1000000;
+  const moonDist = 385000.56 + sumR/1000;  // km
+ 
+  // Moon RA/Dec
+  const sunPos = getSunPosition(JD);
+  const eps = sunPos.eps;
+  const moonLonRad = to_rad(moonLon);
+  const moonLatRad = to_rad(moonLat);
+ 
+  // Equatorial coordinates from ecliptic
+  const sinLon = Math.sin(moonLonRad), cosLon = Math.cos(moonLonRad);
+  const sinLat = Math.sin(moonLatRad), cosLat = Math.cos(moonLatRad);
+  const sinEps = sind(eps), cosEps = cosd(eps);
+  const RA_num = sinLon*cosEps - sinLat/cosLat*sinEps;
+  const RA = mod360(atan2d(RA_num, cosLon));
+  const Dec = to_deg(Math.asin(sinLat*cosEps + cosLat*sinEps*sinLon));
+ 
+  return { longitude: moonLon, latitude: moonLat, distance: moonDist, RA, Dec };
+}
+ 
+// ============================================================
+// SECTION 5: LAHIRI AYANAMSHA (Chitrapaksha)
+// ============================================================
+function getLahiriAyanamsha(JD) {
+  const T = getT(JD);
+  // Lahiri ayanamsha at J2000.0 = 23.85° + precession
+  // IAU 2000 precession rate: 50.2772 arcseconds/year = 0.013965°/year = 1.3965°/century
+  return 23.85 + 1.3968 * T;
+}
+ 
+// ============================================================
+// SECTION 6: PANCHANG NAMES & LOOKUP TABLES
+// ============================================================
+const TITHI_NAMES = [
+  'प्रतिपदा','द्वितीया','तृतीया','चतुर्थी','पंचमी',
+  'षष्ठी','सप्तमी','अष्टमी','नवमी','दशमी',
+  'एकादशी','द्वादशी','त्रयोदशी','चतुर्दशी','पूर्णिमा/अमावस्या'
+];
+const TITHI_ENG = [
+  'Pratipada','Dwitiya','Tritiya','Chaturthi','Panchami',
+  'Shashthi','Saptami','Ashtami','Navami','Dashami',
+  'Ekadashi','Dwadashi','Trayodashi','Chaturdashi','Purnima/Amavasya'
+];
+ 
+const NAKSHATRA_NAMES = [
+  'अश्विनी','भरणी','कृत्तिका','रोहिणी','मृगशिरा','आर्द्रा','पुनर्वसु',
+  'पुष्य','आश्लेषा','मघा','पूर्वा फाल्गुनी','उत्तरा फाल्गुनी','हस्त',
+  'चित्रा','स्वाती','विशाखा','अनुराधा','ज्येष्ठा','मूल','पूर्वाषाढा',
+  'उत्तराषाढा','श्रावण','धनिष्ठा','शतभिषा','पूर्वभाद्रपदा','उत्तरभाद्रपदा','रेवती'
+];
+const NAKSHATRA_ENG = [
+  'Ashwini','Bharani','Krittika','Rohini','Mrigashira','Ardra','Punarvasu',
+  'Pushya','Ashlesha','Magha','Purva Phalguni','Uttara Phalguni','Hasta',
+  'Chitra','Swati','Vishakha','Anuradha','Jyeshtha','Mula','Purva Ashadha',
+  'Uttara Ashadha','Shravana','Dhanishtha','Shatabhisha','Purva Bhadrapada','Uttara Bhadrapada','Revati'
+];
+const NAKSHATRA_LORD = [
+  'Ketu','Shukra','Surya','Chandra','Mangal','Rahu','Guru',
+  'Shani','Budha','Ketu','Shukra','Surya','Chandra',
+  'Mangal','Rahu','Guru','Shani','Budha','Ketu','Shukra',
+  'Surya','Chandra','Mangal','Rahu','Guru','Shani','Budha'
+];
+ 
+const YOGA_NAMES = [
+  'विष्कम्भ','प्रीति','आयुष्मान','सौभाग्य','शोभन','अतिगण्ड','सुकर्मा',
+  'धृति','शूल','गण्ड','वृद्धि','ध्रुव','व्याघात','हर्षण','वज्र',
+  'सिद्धि','व्यतीपात','वरियान','परिघ','शिव','सिद्ध','साध्य','शुभ',
+  'शुक्ल','ब्रह्म','इन्द्र','वैधृति'
+];
+const YOGA_ENG = [
+  'Vishkambha','Priti','Ayushman','Saubhagya','Shobhana','Atiganda','Sukarma',
+  'Dhriti','Shula','Ganda','Vriddhi','Dhruva','Vyaghata','Harshana','Vajra',
+  'Siddhi','Vyatipata','Variyan','Parigha','Shiva','Siddha','Sadhya','Shubha',
+  'Shukla','Brahma','Indra','Vaidhriti'
+];
+ 
+const KARANA_NAMES = [
+  'बव','बालव','कौलव','तैतिल','गर','वणिज','विष्टि',
+  'शकुनि','चतुष्पाद','नाग','किंस्तुघ्न'
+];
+const KARANA_ENG = [
+  'Bava','Balava','Kaulava','Taitila','Gara','Vanija','Vishti(Bhadra)',
+  'Shakuni','Chatushpada','Naga','Kimstughna'
+];
+ 
+const MASA_NAMES = [
+  'चैत्र','वैशाख','ज्येष्ठ','आषाढ','श्रावण','भाद्रपद',
+  'आश्विन','कार्तिक','मार्गशीर्ष','पौष','माघ','फाल्गुन'
+];
+const MASA_ENG = [
+  'Chaitra','Vaishakha','Jyeshtha','Ashadha','Shravana','Bhadrapada',
+  'Ashwin','Kartika','Margashirsha','Pausha','Magha','Phalguna'
+];
+const MASA_MARATHI = [
+  'चैत्र','वैशाख','ज्येष्ठ','आषाढ','श्रावण','भाद्रपद',
+  'आश्विन','कार्तिक','मार्गशीर्ष','पौष','माघ','फाल्गुन'
+];
+ 
+const RITU_NAMES = [
+  ['वसंत','Vasanta / Spring'],['वसंत','Vasanta / Spring'],
+  ['ग्रीष्म','Grishma / Summer'],['ग्रीष्म','Grishma / Summer'],
+  ['वर्षा','Varsha / Monsoon'],['वर्षा','Varsha / Monsoon'],
+  ['शरद','Sharad / Autumn'],['शरद','Sharad / Autumn'],
+  ['हेमंत','Hemanta / Pre-winter'],['हेमंत','Hemanta / Pre-winter'],
+  ['शिशिर','Shishira / Winter'],['शिशिर','Shishira / Winter']
+];
+ 
+const RASHI_NAMES = [
+  {d:'मेष',e:'Mesha / Aries',sym:'♈'},
+  {d:'वृष',e:'Vrishabha / Taurus',sym:'♉'},
+  {d:'मिथुन',e:'Mithuna / Gemini',sym:'♊'},
+  {d:'कर्क',e:'Karka / Cancer',sym:'♋'},
+  {d:'सिंह',e:'Simha / Leo',sym:'♌'},
+  {d:'कन्या',e:'Kanya / Virgo',sym:'♍'},
+  {d:'तुला',e:'Tula / Libra',sym:'♎'},
+  {d:'वृश्चिक',e:'Vrischika / Scorpio',sym:'♏'},
+  {d:'धनु',e:'Dhanu / Sagittarius',sym:'♐'},
+  {d:'मकर',e:'Makara / Capricorn',sym:'♑'},
+  {d:'कुंभ',e:'Kumbha / Aquarius',sym:'♒'},
+  {d:'मीन',e:'Meena / Pisces',sym:'♓'}
+];
+ 
+// ============================================================
+// SECTION 7: KARANA CALCULATION
+// ============================================================
+function getKarana(elongation) {
+  // Elongation 0–360 maps to 60 half-tithis
+  const k = Math.floor(elongation / 6);  // 0–59
+  // First karana: Kimstughna (index 10)
+  if (k === 0) return 10; // Kimstughna (fixed)
+  if (k >= 57) return k - 57 + 7; // Last 3: Shakuni(7), Chatushpada(8), Naga(9)
+  return (k - 1) % 7; // Movable: 0-6
+}
+ 
+function getPreviousNewMoon(JD, currentElongation) {
+  let daysSince = currentElongation / 12.190749;
+  let estJD = JD - daysSince;
+  for (let i = 0; i < 5; i++) {
+    const sunPos = getSunPosition(estJD);
+    const moonPos = getMoonPosition(estJD);
+    let elong = mod360(moonPos.longitude - sunPos.apparentLon);
+    if (elong > 180) elong -= 360;
+    estJD -= elong / 12.190749;
+  }
+  return estJD;
+}
+
+function getNextNewMoon(JD, currentElongation) {
+  let daysToNext = (360 - currentElongation) / 12.190749;
+  let estJD = JD + daysToNext;
+  for (let i = 0; i < 5; i++) {
+    const sunPos = getSunPosition(estJD);
+    const moonPos = getMoonPosition(estJD);
+    let elong = mod360(moonPos.longitude - sunPos.apparentLon);
+    if (elong > 180) elong -= 360;
+    estJD -= elong / 12.190749;
+  }
+  return estJD;
+}
+
+function getLunarMonthAndAdhik(JD, elongation) {
+  const prevNmJD = getPreviousNewMoon(JD, elongation);
+  const nextNmJD = getNextNewMoon(JD, elongation);
+  
+  const sunNM1 = getSunPosition(prevNmJD);
+  const rashi1 = Math.floor(mod360(sunNM1.apparentLon - getLahiriAyanamsha(prevNmJD)) / 30);
+  
+  const sunNM2 = getSunPosition(nextNmJD);
+  const rashi2 = Math.floor(mod360(sunNM2.apparentLon - getLahiriAyanamsha(nextNmJD)) / 30);
+  
+  // Lunar month is named by the upcoming solar transit (rashi1 + 1)
+  const lunarMonthIdx = (rashi1 + 1) % 12;
+  const adhik = (rashi1 === rashi2);
+  
+  return { lunarMonthIdx, adhik };
+}
+ 
+// ============================================================
+// SECTION 9: SUNRISE / SUNSET (NOAA Algorithm)
+// ============================================================
+function getSunriseSunset(JD_noon, latitude, longitude) {
+  // Uses the NOAA Solar Calculator algorithm (Jean Meeus based)
+  const JD = Math.floor(JD_noon) + 0.5; // Midnight UT of the date
+ 
+  function calcSunPos(jd) {
+    const T = getT(jd);
+    const L0 = mod360(280.46646 + 36000.76983*T);
+    const M  = mod360(357.52911 + 35999.05029*T - 0.0001537*T*T);
+    const C = (1.914602 - 0.004817*T)*sind(M) + 0.019993*sind(2*M) + 0.000289*sind(3*M);
+    const sunLon = mod360(L0 + C);
+    const omega = mod360(125.04 - 1934.136*T);
+    const lambda = sunLon - 0.00569 - 0.00478*sind(omega);
+    const eps = 23.439291111 - 0.013004167*T;
+    const RA = mod360(atan2d(cosd(eps)*sind(lambda), cosd(lambda)));
+    const Dec = to_deg(Math.asin(sind(eps)*sind(lambda)));
+    return {RA, Dec};
+  }
+ 
+  function calcEqOfTime(jd) {
+    const T = getT(jd);
+    const eps0 = 23.4392911;
+    const eps = to_rad(eps0 - 0.013004167*T);
+    const L0 = to_rad(mod360(280.46646 + 36000.76983*T));
+    const e = 0.016708634 - 0.000042037*T;
+    const M = to_rad(mod360(357.52911 + 35999.05029*T));
+    const y = Math.tan(eps/2) ** 2;
+    const EqT = y*Math.sin(2*L0) - 2*e*Math.sin(M)
+              + 4*e*y*Math.sin(M)*Math.cos(2*L0)
+              - 0.5*y*y*Math.sin(4*L0)
+              - 1.25*e*e*Math.sin(2*M);
+    return to_deg(EqT) * 4; // minutes
+  }
+ 
+  // Solar noon in minutes from midnight UTC
+  const eqTime = calcEqOfTime(JD);
+  const solarNoonUT = 720 - 4*longitude - eqTime; // minutes
+ 
+  const sp = calcSunPos(JD);
+  const Dec = sp.Dec;
+ 
+  // Hour angle for sunrise/sunset (sun center at -0.8333°)
+  const cosHA = (sind(-0.8333) - sind(latitude)*sind(Dec))
+              / (cosd(latitude)*cosd(Dec));
+ 
+  if (cosHA < -1) return { sunrise:'—', sunset:'—', polarDay: true };
+  if (cosHA > 1)  return { sunrise:'—', sunset:'—', polarNight: true };
+ 
+  const HA = to_deg(Math.acos(cosHA)); // degrees, positive
+ 
+  const sunriseUT = solarNoonUT - 4*HA; // minutes from midnight UTC
+  const sunsetUT  = solarNoonUT + 4*HA;
+ 
+  // Convert to IST (+330 minutes)
+  const sunriseIST = sunriseUT + 330;
+  const sunsetIST  = sunsetUT  + 330;
+ 
+  function minToStr(m) {
+    const h = Math.floor((m % 1440 + 1440) % 1440 / 60);
+    const mn = Math.floor((m % 1440 + 1440) % 1440 % 60);
+    return `${String(h).padStart(2,'0')}:${String(mn).padStart(2,'0')}`;
+  }
+ 
+  return {
+    sunrise: minToStr(sunriseIST),
+    sunset:  minToStr(sunsetIST),
+    solarNoon: minToStr(solarNoonUT + 330),
+    daylightHours: (2*HA/15).toFixed(2)
+  };
+}
+ 
+// ============================================================
+// SECTION 10: FESTIVAL DATABASE
+// ============================================================
+// Format: { tithi (1-15), paksha ('S'=Shukla/'K'=Krishna), month (0=Chaitra..11=Phalguna),
+//           name_deva, name_eng, desc, type }
+const FESTIVALS_LUNAR = [
+  // ── Chaitra (m:0) ─────────────────────────────────────────────────────────
+  {t:1, p:'S', m:0, d:'गुढी पाडवा · चैत्र प्रतिपदा', e:'Gudi Padwa / Ugadi', desc:'Marathi New Year & Telugu-Kannada Ugadi. Vikram Samvatsara begins. Gudi (victory flag) hoisted.'},
+  {t:8, p:'S', m:0, d:'चैत्र अष्टमी · दुर्गाष्टमी', e:'Chaitra Durgashtami', desc:'Worship of Goddess Durga on Chaitra Shukla Ashtami during Chaitra Navratri.'},
+  {t:9, p:'S', m:0, d:'रामनवमी', e:'Ram Navami', desc:'Birth of Lord Shri Ram at noon on Chaitra Shukla Navami. Grand celebrations at Ayodhya.'},
+  {t:13,p:'S', m:0, d:'महावीर जयंती', e:'Mahavir Jayanti', desc:'Birth anniversary of Lord Mahavira, 24th Tirthankara of Jainism, on Chaitra Shukla Trayodashi.'},
+  {t:15,p:'S', m:0, d:'हनुमान जयंती · चैत्र पूर्णिमा', e:'Hanuman Jayanti', desc:'Birth of Lord Hanuman on Chaitra Purnima. Celebrated in Maharashtra & North India.'},
+
+  // ── Vaishakha (m:1) ───────────────────────────────────────────────────────
+  {t:3, p:'S', m:1, d:'अक्षय तृतीया · परशुराम जयंती', e:'Akshaya Tritiya / Parashuram Jayanti', desc:'All deeds on Vaishakha Shukla Tritiya give eternal (Akshaya) merit. Birth of Lord Parashuram.'},
+  {t:15,p:'S', m:1, d:'बुद्ध पूर्णिमा · वैशाख पूर्णिमा', e:'Buddha Purnima / Vaishakha Purnima', desc:'Birth, Enlightenment & Mahaparinirvana of Gautam Buddha. Sacred bath on Vaishakha Purnima.'},
+
+  // ── Jyeshtha (m:2) ────────────────────────────────────────────────────────
+  // BUG FIX: Vat Savitri Purnima = Jyeshtha Shukla PURNIMA (tithi 15), NOT Tritiya (3)
+  {t:15,p:'S', m:2, d:'वट सावित्री व्रत (पूर्णिमा)', e:'Vat Savitri Vrat (Purnima)', desc:'Married women worship the Vat (Banyan) tree for husband longevity. Jyeshtha Shukla Purnima — North India tradition.'},
+  {t:10,p:'S', m:2, d:'गंगा दशहरा', e:'Ganga Dussehra', desc:'Jyeshtha Shukla Dashami — descent of the Ganga from heavens. Ritual bath removes 10 sins.'},
+  {t:11,p:'S', m:2, d:'निर्जला एकादशी', e:'Nirjala Ekadashi', desc:'Most meritorious Ekadashi — fast without even water. Merit equal to all 24 Ekadashis combined.'},
+  {t:15,p:'K', m:2, d:'वट सावित्री व्रत (अमावस्या)', e:'Vat Savitri Vrat (Amavasya)', desc:'Vat Savitri fast on Jyeshtha Amavasya — Maharashtra, Gujarat & South India tradition.'},
+
+  // ── Ashadha (m:3) ─────────────────────────────────────────────────────────
+  {t:2, p:'S', m:3, d:'जगन्नाथ रथयात्रा', e:'Jagannath Rath Yatra', desc:'Grand chariot procession of Lord Jagannath, Balabhadra & Subhadra in Puri, Odisha.'},
+  {t:11,p:'S', m:3, d:'आषाढी एकादशी · देवशयनी एकादशी', e:'Ashadhi Ekadashi / Devshayani Ekadashi', desc:'Lord Vishnu enters Yoga Nidra for 4 months; Chaturmas begins. Grand Pandharpur Wari pilgrimage.'},
+  {t:15,p:'S', m:3, d:'गुरू पूर्णिमा · व्यास पूर्णिमा', e:'Guru Purnima / Vyasa Purnima', desc:'Reverence to the Guru lineage and sage Veda Vyasa on Ashadha Purnima.'},
+
+  // ── Shravana (m:4) ────────────────────────────────────────────────────────
+  {t:3, p:'S', m:4, d:'हरियाली तीज · श्रावणी तीज', e:'Hariyali Teej / Shravani Teej', desc:'Shravana Shukla Tritiya — Goddess Parvati reunites with Shiva. Women celebrate with swings and songs.'},
+  {t:5, p:'S', m:4, d:'नाग पंचमी', e:'Nag Panchami', desc:'Shravana Shukla Panchami — worship of serpent deities Shesha, Vasuki, Takshaka. Milk offered to cobras.'},
+  {t:11,p:'S', m:4, d:'श्रावण पुत्रदा एकादशी', e:'Shravana Putrada Ekadashi', desc:'Shravana Shukla Ekadashi — observed for blessings of progeny and welfare of family.'},
+  {t:15,p:'S', m:4, d:'रक्षाबंधन · नारळी पौर्णिमा · श्रावणी', e:'Raksha Bandhan / Narali Purnima', desc:'Sister ties Rakhi on brother wrist. Coconut offered to the sea. Brahmins change Yajnopavita.'},
+  {t:8, p:'K', m:4, d:'श्री कृष्ण जन्माष्टमी', e:'Janmashtami / Krishna Jayanti', desc:'Birth of Lord Shri Krishna at midnight on Shravana Krishna Ashtami. Dahi Handi celebration follows.'},
+
+  // ── Bhadrapada (m:5) ──────────────────────────────────────────────────────
+  {t:3, p:'S', m:5, d:'हरतालिका तीज', e:'Hartalika Teej', desc:'Bhadrapada Shukla Tritiya — Goddess Parvati nirjala fast for Shiva. Sand idol worshipped overnight; no sleep.'},
+  {t:4, p:'S', m:5, d:'गणेश चतुर्थी · विनायक चतुर्थी', e:'Ganesh Chaturthi / Vinayaka Chaturthi', desc:'Birth of Lord Ganesha on Bhadrapada Shukla Chaturthi. 10-day Ganeshotsav begins across Maharashtra.'},
+  {t:5, p:'S', m:5, d:'ऋषि पंचमी', e:'Rishi Panchami', desc:'Bhadrapada Shukla Panchami — reverence to the Saptarishis. Women observe fast for purification from inadvertent sins.'},
+  {t:14,p:'S', m:5, d:'अनंत चतुर्दशी', e:'Anant Chaturdashi', desc:'Ganesh Visarjan on the 10th day. Worship of Lord Ananta (Vishnu on Shesha). Anant Vrat thread tied.'},
+  {t:15,p:'K', m:5, d:'महालय अमावस्या · पितृ अमावस्या', e:'Mahalaya Amavasya / Pitru Amavasya', desc:'Last & most sacred day of Pitru Paksha Shraddha. Tarpan for all ancestors. Devi Paksha begins — Navratri preparation.'},
+
+  // ── Ashwin (m:6) ──────────────────────────────────────────────────────────
+  {t:1, p:'S', m:6, d:'शारदीय नवरात्री · घटस्थापना', e:'Sharad Navratri Begins / Ghatasthapana', desc:'Nine nights of Goddess Durga begin on Ashwin Shukla Pratipada. Kalash installed; barley seeds sown.'},
+  {t:7, p:'S', m:6, d:'सप्तमी · सरस्वती पूजा (नवरात्री)', e:'Saptami / Saraswati Puja (Navratri)', desc:'Ashwin Shukla Saptami — Goddess Saraswati worshipped; books and instruments placed before her.'},
+  {t:8, p:'S', m:6, d:'दुर्गा अष्टमी · महाअष्टमी', e:'Durga Ashtami / Maha Ashtami', desc:'Ashwin Shukla Ashtami — worship of Maha Gauri. Kumari Puja. Grand Sandhi Puja at Saptami-Ashtami junction.'},
+  {t:9, p:'S', m:6, d:'महानवमी · सरस्वती विसर्जन', e:'Maha Navami / Saraswati Visarjan', desc:'Ashwin Shukla Navami — last day of Navratri. Saraswati Visarjan. Ayudha Puja in South India.'},
+  {t:10,p:'S', m:6, d:'दसरा · विजया दशमी', e:'Dussehra / Vijaya Dashami', desc:'Ashwin Shukla Dashami — triumph of Rama over Ravana & Durga over Mahishasura. Ravana Dahan. Shami tree worshipped.'},
+  {t:15,p:'S', m:6, d:'कोजागिरी · शरद पूर्णिमा', e:'Kojagiri / Sharad Purnima', desc:'Full moon of Ashwin. Goddess Lakshmi descends at midnight. Kheer kept in moonlight for celestial Amrit (nectar).'},
+
+  // ── Kartika (m:7) ─────────────────────────────────────────────────────────
+  {t:4, p:'K', m:7, d:'करवा चौथ', e:'Karva Chauth', desc:'Kartika Krishna Chaturthi — married women fast without water from sunrise to moonrise for husband longevity.'},
+  {t:8, p:'K', m:7, d:'अहोई अष्टमी', e:'Ahoi Ashtami', desc:'Kartika Krishna Ashtami — mothers keep nirjala fast for children well-being. Goddess Ahoi Mata worshipped at dusk.'},
+  {t:13,p:'K', m:7, d:'धनत्रयोदशी · धनतेरस', e:'Dhanteras / Dhanatrayodashi', desc:'Kartika Krishna Trayodashi — worship of Lord Dhanvantari (Ayurveda deity). Gold, silver & utensils purchased for prosperity.'},
+  {t:14,p:'K', m:7, d:'नरक चतुर्दशी · छोटी दीपावली', e:'Narak Chaturdashi / Choti Diwali', desc:'Victory of Shri Krishna over Narakasura. Abhyang Snan before sunrise. Yama Deepan — 14 lamps lit in the evening.'},
+  {t:15,p:'K', m:7, d:'दीपावली · लक्ष्मीपूजन', e:'Diwali / Lakshmi Puja', desc:'Festival of Lights on Kartika Amavasya. Goddess Lakshmi & Kubera worshipped. Rows of diyas lit. Rama return celebrated.'},
+  {t:1, p:'S', m:7, d:'बलिप्रतिपदा · दिवाळी पाडवा · गोवर्धन पूजा', e:'Bali Pratipada / Diwali Padwa / Govardhan Puja', desc:'King Bali generosity honored. Govardhan Parvat worshipped with 56-dish Annakut. Husband-wife celebrate together.'},
+  {t:2, p:'S', m:7, d:'भाऊबीज · यम द्वितीया', e:'Bhai Dooj / Bhaubeej / Yam Dwitiya', desc:'Kartika Shukla Dwitiya — sister applies tilak on brother forehead; prays for his longevity. Yama honors sister Yamuna.'},
+  {t:6, p:'S', m:7, d:'छठ पूजा · सूर्य षष्ठी', e:'Chhath Puja / Surya Shashthi', desc:'Four-day Sun worship. Arghya (offerings) at sunset and sunrise. Especially celebrated in Bihar, Jharkhand & UP.'},
+  {t:11,p:'S', m:7, d:'कार्तिकी एकादशी · देवोत्थान एकादशी · तुलसी विवाह', e:'Kartiki Ekadashi / Devotthan / Tulsi Vivah', desc:'Lord Vishnu awakens from Yoga Nidra. Tulsi Vivah with Shaligram. Pandharpur Wari. Chaturmas ends. Auspicious period resumes.'},
+  {t:15,p:'S', m:7, d:'त्रिपुरारी पौर्णिमा · कार्तिक पूर्णिमा · देव दीपावली', e:'Kartik Purnima / Tripurari Purnima / Dev Deepawali', desc:'Shiva victory over Tripurasura. Dev Deepawali at Varanasi ghats. Guru Nanak Jayanti (Sikhism). Kartik sacred bath.'},
+
+  // ── Margashirsha (m:8) ────────────────────────────────────────────────────
+  {t:5, p:'S', m:8, d:'विवाह पंचमी', e:'Vivah Panchami', desc:'Margashirsha Shukla Panchami — celestial wedding anniversary of Lord Rama & Goddess Sita. Grand celebrations at Janakpur.'},
+  {t:11,p:'S', m:8, d:'मोक्षदा एकादशी · गीता जयंती', e:'Mokshada Ekadashi / Gita Jayanti', desc:'Lord Krishna revealed the Bhagavad Gita to Arjuna at Kurukshetra on this day. Grants liberation (Moksha).'},
+
+  // ── Pausha (m:9) ──────────────────────────────────────────────────────────
+  {t:11,p:'S', m:9, d:'पौष पुत्रदा एकादशी', e:'Pausha Putrada Ekadashi', desc:'Pausha Shukla Ekadashi — fasting for the blessings of children. One of two Putrada Ekadashis in the year.'},
+
+  // ── Magha (m:10) ──────────────────────────────────────────────────────────
+  {t:4, p:'S', m:10, d:'गणेश जयंती · माघी गणेश चतुर्थी', e:'Ganesh Jayanti / Maghi Ganesh Chaturthi', desc:'Magha Shukla Chaturthi — birth anniversary of Lord Ganesha (Magha tradition). Especially celebrated in Goa & Maharashtra.'},
+  {t:5, p:'S', m:10, d:'वसंत पंचमी · सरस्वती पूजा', e:'Vasant Panchami / Saraswati Puja', desc:'Magha Shukla Panchami — Goddess Saraswati worshipped in yellow. Onset of Vasant (Spring). Kite flying & saffron sweets.'},
+  {t:7, p:'S', m:10, d:'रथ सप्तमी · सूर्य जयंती · अचला सप्तमी', e:'Ratha Saptami / Surya Jayanti', desc:'Magha Shukla Saptami — Lord Surya chariot turns northward. Sacred bath at sunrise. Surya Argha offered.'},
+  {t:15,p:'K', m:10, d:'मौनी अमावस्या · माघ अमावस्या', e:'Mauni Amavasya / Magha Amavasya', desc:'Day of silence (Maun Vrat) and deep meditation. Holy bath at Prayagraj Sangam during Magh Mela / Kumbh Mela.'},
+  {t:14,p:'K', m:10, d:'महाशिवरात्री', e:'Mahashivaratri', desc:'Magha Krishna Chaturdashi — great night of Lord Shiva. Overnight vigil, Shiva Abhishek with milk & bilva leaves, strict fast.'},
+
+  // ── Phalguna (m:11) ───────────────────────────────────────────────────────
+  {t:11,p:'S', m:11, d:'आमलकी एकादशी', e:'Amalaki Ekadashi', desc:'Phalguna Shukla Ekadashi — Amla (gooseberry) tree worshipped as Lord Vishnu. Merit equal to all pilgrimages.'},
+  {t:15,p:'S', m:11, d:'होळी · होलिका दहन · फाल्गुन पूर्णिमा', e:'Holi / Holika Dahan', desc:'Phalguna Purnima — bonfire (Holika Dahan) at night celebrates Prahlad victory. Rang Wali Holi played next morning.'},
+  {t:5, p:'K', m:11, d:'रंग पंचमी', e:'Rang Panchami', desc:'Phalguna Krishna Panchami — festival of colors at its peak. Especially celebrated in Maharashtra, Madhya Pradesh & Rajasthan.'},
+];
+
+// ── Ekadashi loop: fill remaining months (skip months with already-named Shukla Ekadashis) ──
+// Named Shukla Ekadashis in array: m:2=Nirjala, m:3=Ashadhi, m:4=Putrada-Shravana,
+// m:7=Kartiki, m:8=Mokshada, m:9=Pausha-Putrada, m:11=Amalaki
+const _namedShuklaEkadashiMonths = new Set([2, 3, 4, 7, 8, 9, 11]);
+for (let mo = 0; mo < 12; mo++) {
+  if (!_namedShuklaEkadashiMonths.has(mo)) {
+    FESTIVALS_LUNAR.push({t:11,p:'S',m:mo, d:'एकादशी', e:'Ekadashi', desc:'Sacred Vaishnava fasting day (Shukla Paksha Ekadashi).'});
+  }
+  // Krishna Ekadashi — add for all months
+  FESTIVALS_LUNAR.push({t:11,p:'K',m:mo, d:'एकादशी', e:'Ekadashi', desc:'Sacred Vaishnava fasting day (Krishna Paksha Ekadashi).'});
+}
+
+// Solar festivals (based on Sun's Nirayana longitude entering a rashi)
+const FESTIVALS_SOLAR = [
+  {sunLon:  0, d:'मेष संक्रांती · सौर नव वर्ष', e:'Mesh Sankranti / Solar New Year', desc:'Sun enters Nirayana Aries (Mesha). Solar New Year in several Indian traditions.'},
+  {sunLon: 30, d:'वृषभ संक्रांती', e:'Vrishabha Sankranti', desc:'Sun enters Nirayana Taurus.'},
+  {sunLon: 60, d:'मिथुन संक्रांती', e:'Mithuna Sankranti', desc:'Sun enters Nirayana Gemini.'},
+  {sunLon: 90, d:'कर्क संक्रांती', e:'Karka Sankranti', desc:'Sun enters Nirayana Cancer. Uttarayan returns.'},
+  {sunLon:120, d:'सिंह संक्रांती', e:'Simha Sankranti', desc:'Sun enters Nirayana Leo.'},
+  {sunLon:150, d:'कन्या संक्रांती', e:'Kanya Sankranti', desc:'Sun enters Nirayana Virgo.'},
+  {sunLon:180, d:'तुला संक्रांती', e:'Tula Sankranti', desc:'Sun enters Nirayana Libra.'},
+  {sunLon:210, d:'वृश्चिक संक्रांती', e:'Vrischika Sankranti', desc:'Sun enters Nirayana Scorpio.'},
+  {sunLon:240, d:'धनु संक्रांती', e:'Dhanu Sankranti', desc:'Sun enters Nirayana Sagittarius.'},
+  {sunLon:270, d:'मकर संक्रांती · उत्तरायण', e:'Makar Sankranti / Uttarayan', desc:'Sun enters Nirayana Capricorn. Harvest festival. Uttarayan begins (kite flying).'},
+  {sunLon:300, d:'कुंभ संक्रांती', e:'Kumbha Sankranti', desc:'Sun enters Nirayana Aquarius.'},
+  {sunLon:330, d:'मीन संक्रांती', e:'Meena Sankranti', desc:'Sun enters Nirayana Pisces.'},
+];
+ 
+function getTodayFestivals(JD, lunarMonthIdx, tithiNum, paksha) {
+  const ayanamsha = getLahiriAyanamsha(JD);
+  const sunPos = getSunPosition(JD);
+  const sunNirayana = mod360(sunPos.apparentLon - ayanamsha);
+  const fests = [];
+ 
+  // Lunar festivals
+  const pk = paksha === 'शुक्ल' ? 'S' : 'K';
+  const tithiInPaksha = tithiNum <= 15 ? tithiNum : tithiNum - 15;
+  // For Amavasya (tithi 30) = K15
+  const effectiveTithi = (tithiInPaksha === 15 && pk === 'S') ? 15 :
+                         (tithiInPaksha === 15 && pk === 'K') ? 15 : tithiInPaksha;
+ 
+  for (const f of FESTIVALS_LUNAR) {
+    if (f.t === effectiveTithi && f.p === pk && f.m === lunarMonthIdx) {
+      fests.push(f);
+    }
+  }
+ 
+  // Solar festivals (check if sun just entered a new rashi today)
+  const yesterday_JD = JD - 1;
+  const sunPosY = getSunPosition(yesterday_JD);
+  const sunNirayanaY = mod360(sunPosY.apparentLon - getLahiriAyanamsha(yesterday_JD));
+  const todayRashi = Math.floor(sunNirayana / 30);
+  const yesterdayRashi = Math.floor(sunNirayanaY / 30);
+  if (todayRashi !== yesterdayRashi) {
+    const solFest = FESTIVALS_SOLAR.find(f => f.sunLon === todayRashi * 30);
+    if (solFest) fests.push(solFest);
+  }
+ 
+  return fests;
+}
+ 
+// ============================================================
+// SECTION 11: ADHIK MASA DETECTION
+// ============================================================
+// Adhik Masa is now calculated together with the Lunar Month in getLunarMonthAndAdhik
+ 
+// ============================================================
+// SECTION 12: MAIN PANCHANG CALCULATION
+// ============================================================
+function calculatePanchang(JD, lat=19.076, lon=72.8777) {
+  const sunPos  = getSunPosition(JD);
+  const moonPos = getMoonPosition(JD);
+  const ayanamsha = getLahiriAyanamsha(JD);
+ 
+  // Nirayana (Sidereal) longitudes
+  const sunNirayana  = mod360(sunPos.apparentLon - ayanamsha);
+  const moonNirayana = mod360(moonPos.longitude - ayanamsha);
+ 
+  // ── Tithi ──────────────────────────────────────────────
+  // Angular separation Moon - Sun (tropical, for time syncing)
+  const elongation = mod360(moonPos.longitude - sunPos.apparentLon);
+  const tithiFloat = elongation / 12;   // 0–30
+  const tithiNum   = Math.floor(tithiFloat) + 1;  // 1–30
+  const tithiFrac  = tithiFloat - Math.floor(tithiFloat);
+  const paksha = tithiNum <= 15 ? 'शुक्ल' : 'कृष्ण';
+  const pakshaEng = tithiNum <= 15 ? 'Shukla Paksha (Waxing)' : 'Krishna Paksha (Waning)';
+  const tithiInPaksha = tithiNum <= 15 ? tithiNum : tithiNum - 15;
+  const tithiIdx = tithiInPaksha - 1; // 0-14 for names
+ 
+  // ── Nakshatra ───────────────────────────────────────────
+  const nakshatraFloat = moonNirayana / (360/27);
+  const nakshatraIdx   = Math.floor(nakshatraFloat) % 27;
+  const nakshatraFrac  = nakshatraFloat - Math.floor(nakshatraFloat);
+  const nakshatraPada  = Math.floor(nakshatraFrac * 4) + 1;
+ 
+  // ── Yoga ───────────────────────────────────────────────
+  const yogaLon  = mod360(sunNirayana + moonNirayana);
+  const yogaIdx  = Math.floor(yogaLon / (360/27)) % 27;
+ 
+  // ── Karana ─────────────────────────────────────────────
+  const karanaIdx = getKarana(elongation);
+ 
+  // ── Lunar Month & Adhik Masa ───────────────────────────
+  const { lunarMonthIdx, adhik } = getLunarMonthAndAdhik(JD, elongation);
+
+  // ── Solar Rashi ────────────────────────────────────────
+  const sunRashi  = Math.floor(sunNirayana / 30);
+  const moonRashi = Math.floor(moonNirayana / 30);
+
+  // ── Ritu (Season) ──────────────────────────────────────
+  const rituIdx = lunarMonthIdx;
+
+  // ── Sunrise / Sunset ────────────────────────────────────
+  const sunTimes = getSunriseSunset(JD, lat, lon);
+ 
+  // ── Festivals ──────────────────────────────────────────
+  const festivals = getTodayFestivals(JD, lunarMonthIdx, tithiNum, paksha);
+ 
+  return {
+    tithi: { num: tithiNum, inPaksha: tithiInPaksha, idx: tithiIdx, frac: tithiFrac, paksha, pakshaEng },
+    nakshatra: { idx: nakshatraIdx, frac: nakshatraFrac, pada: nakshatraPada },
+    yoga: { idx: yogaIdx },
+    karana: { idx: karanaIdx },
+    lunarMonth: lunarMonthIdx,
+    sunRashi, moonRashi, ritu: rituIdx,
+    sunTimes, adhik, festivals,
+    sunNirayana, moonNirayana, ayanamsha,
+    elongation
+  };
+}
+ 
+// ============================================================
+// SECTION 12.5: MUHURTA ENGINE (CHOGHADIYA, RAHU, YAMAGANDA)
+// ============================================================
+const CHOGHADIYA_NAMES = {
+  amrit: { d: 'अमृत', e: 'Amrit', type: 'good', desc: 'Nectar / Highly Auspicious' },
+  shubh: { d: 'शुभ', e: 'Shubh', type: 'good', desc: 'Auspicious' },
+  labh:  { d: 'लाभ', e: 'Labh', type: 'good', desc: 'Gain / Profitable' },
+  chal:  { d: 'चल', e: 'Chal', type: 'neutral', desc: 'Neutral / Normal' },
+  udveg: { d: 'उद्वेग', e: 'Udveg', type: 'bad', desc: 'Anxiety / Inauspicious' },
+  rog:   { d: 'रोग', e: 'Rog', type: 'bad', desc: 'Disease / Inauspicious' },
+  kaal:  { d: 'काल', e: 'Kaal', type: 'bad', desc: 'Death / Highly Inauspicious' }
+};
+
+const DAY_CHOGHADIYA = [
+  ['udveg','chal','labh','amrit','kaal','shubh','rog','udveg'],     // Sun (0)
+  ['amrit','kaal','shubh','rog','udveg','chal','labh','amrit'],     // Mon (1)
+  ['rog','udveg','chal','labh','amrit','kaal','shubh','rog'],       // Tue (2)
+  ['labh','amrit','kaal','shubh','rog','udveg','chal','labh'],      // Wed (3)
+  ['shubh','rog','udveg','chal','labh','amrit','kaal','shubh'],     // Thu (4)
+  ['chal','labh','amrit','kaal','shubh','rog','udveg','chal'],      // Fri (5)
+  ['kaal','shubh','rog','udveg','chal','labh','amrit','kaal']       // Sat (6)
+];
+
+const NIGHT_CHOGHADIYA = [
+  ['shubh','amrit','chal','rog','kaal','labh','udveg','shubh'],     // Sun (0)
+  ['chal','rog','kaal','labh','udveg','shubh','amrit','chal'],      // Mon (1)
+  ['kaal','labh','udveg','shubh','amrit','chal','rog','kaal'],      // Tue (2)
+  ['udveg','shubh','amrit','chal','rog','kaal','labh','udveg'],     // Wed (3)
+  ['amrit','chal','rog','kaal','labh','udveg','shubh','amrit'],     // Thu (4)
+  ['rog','kaal','labh','udveg','shubh','amrit','chal','rog'],       // Fri (5)
+  ['labh','udveg','shubh','amrit','chal','rog','kaal','labh']       // Sat (6)
+];
+
+const RAHU_KAAL_PARTS = [8, 2, 7, 5, 6, 4, 3]; // 1-indexed parts of Dinamana
+const YAMAGANDA_PARTS = [5, 4, 3, 2, 1, 7, 6];
+
+function getMinutesFromHHMM(timeStr) {
+  if (!timeStr || timeStr === '—') return 0;
+  const [h,m] = timeStr.split(':').map(Number);
+  return h * 60 + m;
+}
+
+function minToStrMuhurta(m) {
+  const h = Math.floor((m % 1440 + 1440) % 1440 / 60);
+  const mn = Math.floor((m % 1440 + 1440) % 1440 % 60);
+  return `${String(h).padStart(2,'0')}:${String(mn).padStart(2,'0')}`;
+}
+
+function calculateMuhurta(JD, lat, lon) {
+  const { year, month, day } = jdToDate(JD);
+  const dow = new Date(year, month-1, day).getDay(); // 0=Sun, 6=Sat
+
+  const tSun = getSunriseSunset(JD, lat, lon);
+  const tomorrowJD = JD + 1;
+  const tSunTom = getSunriseSunset(tomorrowJD, lat, lon);
+
+  const sunriseM = getMinutesFromHHMM(tSun.sunrise);
+  const sunsetM = getMinutesFromHHMM(tSun.sunset);
+  let nextSunriseM = getMinutesFromHHMM(tSunTom.sunrise);
+  if (nextSunriseM < sunsetM) nextSunriseM += 1440; // crosses midnight
+
+  const dinamana = sunsetM - sunriseM;
+  const ratrimana = nextSunriseM - sunsetM;
+
+  const dayPart = dinamana / 8;
+  const nightPart = ratrimana / 8;
+
+  const solarNoonM = getMinutesFromHHMM(tSun.solarNoon);
+  const abhijitDuration = dinamana / 15; // astronomically exactly 1/15th of day length
+  const abhijitStart = solarNoonM - (abhijitDuration / 2);
+  const abhijitEnd = solarNoonM + (abhijitDuration / 2);
+
+  const dayChoghadiya = DAY_CHOGHADIYA[dow].map((key, i) => {
+    return {
+      key, ...CHOGHADIYA_NAMES[key],
+      start: sunriseM + (i * dayPart),
+      end: sunriseM + ((i + 1) * dayPart)
+    };
+  });
+
+  const nightChoghadiya = NIGHT_CHOGHADIYA[dow].map((key, i) => {
+    return {
+      key, ...CHOGHADIYA_NAMES[key],
+      start: sunsetM + (i * nightPart),
+      end: sunsetM + ((i + 1) * nightPart)
+    };
+  });
+
+  const rahuStart = sunriseM + ((RAHU_KAAL_PARTS[dow] - 1) * dayPart);
+  const rahuEnd = rahuStart + dayPart;
+
+  const yamaStart = sunriseM + ((YAMAGANDA_PARTS[dow] - 1) * dayPart);
+  const yamaEnd = yamaStart + dayPart;
+
+  return {
+    abhijit: { start: abhijitStart, end: abhijitEnd },
+    rahu: { start: rahuStart, end: rahuEnd },
+    yama: { start: yamaStart, end: yamaEnd },
+    dayChoghadiya,
+    nightChoghadiya
+  };
+}
+
+// ============================================================
+// SECTION 12.8: KUNDALI & TARA BALA
+// ============================================================
+
+const TARA_NAMES = [
+  { n: 'जन्म (Janma)', type: 'bad', desc: 'Danger / Caution. Avoid new ventures.' },
+  { n: 'सम्पत (Sampat)', type: 'good', desc: 'Wealth and Prosperity. Highly favorable.' },
+  { n: 'विपत (Vipat)', type: 'bad', desc: 'Dangers and Losses. Very unfavorable.' },
+  { n: 'क्षेम (Kshema)', type: 'good', desc: 'Well-being and Safety. Good for travel.' },
+  { n: 'प्रत्यक (Pratyak)', type: 'bad', desc: 'Obstacles and Hindrances.' },
+  { n: 'साधक (Sadhaka)', type: 'good', desc: 'Realization of Ambitions. Excellent for success.' },
+  { n: 'नैधन (Naidhana)', type: 'bad', desc: 'Death-like/Severe Dangers. Strictly avoid.' },
+  { n: 'मित्र (Mitra)', type: 'good', desc: 'Good Friend. Favorable interactions.' },
+  { n: 'परम मित्र (Parama Mitra)', type: 'good', desc: 'Best Friend. Highly auspicious for support.' }
+];
+
+const NAKSHATRA_PREDICTIONS = [
+  { traits: "Dynamic, pioneering, swift and adventurous.", forecast: "Your future holds many sudden starts and exciting journeys. Success comes through independent ventures and quick decision-making." },
+  { traits: "Strong-willed, determined, and deeply transformative.", forecast: "You will experience significant transformations in life. Your perseverance will lead to immense success after overcoming initial struggles." },
+  { traits: "Ambitious, bright, and highly motivated.", forecast: "You are destined for leadership. Your future is marked by rising to positions of authority and illuminating the lives of others." },
+  { traits: "Creative, nurturing, and aesthetically inclined.", forecast: "Growth and prosperity will come steadily. Your future involves building strong foundations and enjoying the finer things in life." },
+  { traits: "Curious, restless, and spiritual.", forecast: "A life full of exploration awaits. You will travel often and seek profound spiritual or intellectual truths in your later years." },
+  { traits: "Emotional, empathetic, and resilient.", forecast: "Your journey involves deep emotional growth. You will triumph over storms and eventually become a pillar of support for your community." },
+  { traits: "Nurturing, innocent, and protective.", forecast: "You will experience cycles of renewal. Financial stability and a warm family life will be the hallmarks of your future." },
+  { traits: "Caring, devoted, and spiritually inclined.", forecast: "Your future is brightened by your generosity. Success comes through helping others and maintaining strong traditional values." },
+  { traits: "Intense, mystical, and cunning.", forecast: "Expect a life of profound psychological insights. You will conquer hidden enemies and uncover great secrets, leading to unique success." },
+  { traits: "Regal, ancestral, and proud.", forecast: "You are bound for material success and recognition. A strong connection to your heritage will guide you to a powerful position in society." },
+  { traits: "Creative, relaxed, and sociable.", forecast: "Your future brings unexpected luck and creative fulfillment. You will enjoy a wide circle of friends and leisurely prosperity." },
+  { traits: "Practical, focused, and disciplined.", forecast: "Hard work will pay off handsomely. Your future involves establishing lasting structures, achieving financial security, and earning immense respect." },
+  { traits: "Skillful, adaptable, and communicative.", forecast: "Your talents will open many doors. Success in your future is tied to your ability to adapt, negotiate, and use your hands or intellect skillfully." },
+  { traits: "Brilliant, visionary, and artistic.", forecast: "You will shine in creative or unusual fields. Your future holds moments of sudden inspiration that will change your path for the better." },
+  { traits: "Independent, diplomatic, and gentle.", forecast: "You will achieve balance in life. Prosperity comes through partnerships, trade, and your ability to remain calm in every situation." },
+  { traits: "Purposeful, focused, and triumphant.", forecast: "Your future is marked by achieving your long-term goals. Once you set your mind to something, inevitable success will follow." },
+  { traits: "Friendly, compassionate, and devotional.", forecast: "A peaceful and successful life awaits. Your gentle nature will attract devoted friends and steady, continuous growth." },
+  { traits: "Authoritative, protective, and commanding.", forecast: "You will rise to the top of your chosen field. Your future holds positions of seniority and the responsibility of protecting others." },
+  { traits: "Direct, ambitious, and deeply rooted.", forecast: "Your early life may involve uprooting, but your future promises the establishment of a massive, unshakeable empire of your own making." },
+  { traits: "Determined, invincible, and proudly independent.", forecast: "You will enjoy early successes. Your future will be filled with victories, fame, and the ability to influence large groups of people." },
+  { traits: "Unstoppable, principled, and enduring.", forecast: "Your later life will be your most successful period. You will achieve permanent victories and leave a lasting legacy." },
+  { traits: "Observant, listening, and learned.", forecast: "Wisdom will be your greatest asset. Your future brings spiritual awakening, extensive learning, and universal respect." },
+  { traits: "Wealthy, musical, and highly adaptable.", forecast: "You are destined for prosperity. Your future involves multiple streams of income and a harmonious, joyful lifestyle." },
+  { traits: "Mysterious, healing, and philosophical.", forecast: "Your life will have a higher purpose. You will overcome many obstacles and eventually serve as a healer or guide to others." },
+  { traits: "Passionate, eccentric, and visionary.", forecast: "A highly unique path awaits you. Your future is filled with spiritual insights, unconventional wealth, and profound personal freedom." },
+  { traits: "Wise, compassionate, and spiritually elevated.", forecast: "Your future holds the promise of deep spiritual liberation. You will find immense peace and become a beacon of wisdom for others." },
+  { traits: "Nurturing, wealthy, and highly intuitive.", forecast: "A life of comfort and steady growth is predicted. Your future is secure, protected, and blessed with emotional fulfillment." }
+];
+
+const LAGNA_PREDICTIONS = [
+  "As an Aries Ascendant, your path is defined by courage and action. You will forge your own destiny.",
+  "As a Taurus Ascendant, stability is your strength. You will build wealth and enjoy a comfortable, beautiful life.",
+  "As a Gemini Ascendant, intellect and communication are your tools. You will have a versatile and dynamic career.",
+  "As a Cancer Ascendant, empathy is your superpower. Your future revolves around family, real estate, and nurturing others.",
+  "As a Leo Ascendant, you are born to lead. You will naturally attract fame, respect, and positions of authority.",
+  "As a Virgo Ascendant, precision is your gift. You will find immense success through analytical skills and serving others.",
+  "As a Libra Ascendant, balance is your goal. Your future holds successful partnerships and a thriving social life.",
+  "As a Scorpio Ascendant, transformation is your journey. You will uncover hidden truths and wield profound influence.",
+  "As a Sagittarius Ascendant, exploration is your calling. Your life will be rich with travel, higher learning, and philosophy.",
+  "As a Capricorn Ascendant, ambition is your drive. Through sheer discipline, you will reach the pinnacle of success.",
+  "As an Aquarius Ascendant, innovation is your path. You will break boundaries and work towards humanitarian goals.",
+  "As a Pisces Ascendant, intuition is your guide. Your future involves spiritual growth, creativity, and deep compassion."
+];
+
+function calculateLagna(JD, lat, lon) {
+  const T = getT(JD);
+  const eps0 = 23.439291111 - 0.013004167*T; // Obliquity of ecliptic in degrees
+  const eps = to_rad(eps0);
+  
+  const gmst = GMST(JD);
+  const LST = mod360(gmst + lon); // Local Sidereal Time in degrees
+  
+  const LSTRad = to_rad(LST);
+  const latRad = to_rad(lat);
+  
+  const y = Math.cos(LSTRad);
+  const x = -Math.sin(LSTRad) * Math.cos(eps) - Math.tan(latRad) * Math.sin(eps);
+  
+  let ascendantTrop = to_deg(Math.atan2(y, x));
+  ascendantTrop = mod360(ascendantTrop);
+  
+  const ayanamsha = getLahiriAyanamsha(JD);
+  const lagnaNirayana = mod360(ascendantTrop - ayanamsha);
+  const lagnaRashi = Math.floor(lagnaNirayana / 30);
+  
+  return {
+    tropicalAscendant: ascendantTrop,
+    nirayanaLagna: lagnaNirayana,
+    lagnaRashi: lagnaRashi
+  };
+}
+
+function updateKundaliLatLon() {
+  const v = document.getElementById('kundaliCity').value;
+  if (v) {
+    const [lat, lon] = v.split(',');
+    document.getElementById('kundaliLat').value = lat;
+    document.getElementById('kundaliLon').value = lon;
+  }
+}
+
+function calculateKundali() {
+  const dateStr = document.getElementById('kundaliDate').value;
+  const timeStr = document.getElementById('kundaliTime').value;
+  const lat = parseFloat(document.getElementById('kundaliLat').value);
+  const lon = parseFloat(document.getElementById('kundaliLon').value);
+  
+  if (!dateStr || !timeStr || isNaN(lat) || isNaN(lon)) {
+    alert("Please fill all fields for Kundali Calculation."); return;
+  }
+  
+  const [yr, mo, dy] = dateStr.split('-').map(Number);
+  const [hr, mn] = timeStr.split(':').map(Number);
+  
+  // Assume IST for birth (subtract 330 mins)
+  const totalMinUTC = hr*60 + mn - 330;
+  const hrUTC = Math.floor((totalMinUTC + 1440) % 1440 / 60);
+  const mnUTC = (totalMinUTC + 1440) % 60;
+  const bJD = getJD(yr, mo, dy, hrUTC, mnUTC, 0);
+  
+  const bMoon = getMoonPosition(bJD);
+  const bAyan = getLahiriAyanamsha(bJD);
+  const bMoonNirayana = mod360(bMoon.longitude - bAyan);
+  const bNakshatraFloat = bMoonNirayana / (360/27);
+  const bNakshatraIdx = Math.floor(bNakshatraFloat) % 27;
+  const bNakshatraPada = Math.floor((bNakshatraFloat - bNakshatraIdx) * 4) + 1;
+  
+  const lagna = calculateLagna(bJD, lat, lon);
+  
+  // Calculate today's Nakshatra
+  const todayDate = new Date();
+  const todayJD = getJD(todayDate.getFullYear(), todayDate.getMonth()+1, todayDate.getDate(), 6, 30, 0); // Approx noon IST
+  const todayMoon = getMoonPosition(todayJD);
+  const todayAyan = getLahiriAyanamsha(todayJD);
+  const todayMoonNirayana = mod360(todayMoon.longitude - todayAyan);
+  const todayNakshatraIdx = Math.floor(todayMoonNirayana / (360/27)) % 27;
+  
+  const el = document.getElementById('kundaliResult');
+  el.style.display = 'block';
+  document.getElementById('kNak').textContent = `${NAKSHATRA_NAMES[bNakshatraIdx]} (Pada ${bNakshatraPada})`;
+  document.getElementById('kLagna').textContent = `${RASHI_NAMES[lagna.lagnaRashi].d} (${(lagna.nirayanaLagna % 30).toFixed(2)}° in ${RASHI_NAMES[lagna.lagnaRashi].e.split(' / ')[1]})`;
+  
+  const taraIdx = ((todayNakshatraIdx - bNakshatraIdx + 27) % 27) % 9;
+  const tara = TARA_NAMES[taraIdx];
+  const tbEl = document.getElementById('kTaraBala');
+  tbEl.textContent = tara.n;
+  tbEl.style.color = tara.type === 'good' ? '#66bb6a' : '#ef5350';
+  document.getElementById('kTaraDesc').textContent = tara.desc;
+  document.getElementById('kTaraDesc').style.color = tara.type === 'good' ? '#a5d6a7' : '#ef9a9a';
+
+  const traits = NAKSHATRA_PREDICTIONS[bNakshatraIdx].traits;
+  const lagnaForecast = LAGNA_PREDICTIONS[lagna.lagnaRashi];
+  const nakForecast = NAKSHATRA_PREDICTIONS[bNakshatraIdx].forecast;
+
+  document.getElementById('kTraits').innerHTML = `<span style="color:var(--gold-bright)">Nakshatra Effect:</span> ${traits}`;
+  document.getElementById('kFuture').innerHTML = `<span style="color:var(--gold-bright)">Ascendant (Lagna) Path:</span> ${lagnaForecast}<br><br><span style="color:var(--gold-bright)">Destined Path:</span> ${nakForecast}`;
+}
+
+// ============================================================
+// SECTION 13: GREGORIAN MONTH NAMES
+// ============================================================
+const GREG_MONTHS = ['January','February','March','April','May','June',
+                     'July','August','September','October','November','December'];
+ 
+// ============================================================
+// SECTION 14: UI RENDERING
+// ============================================================
+let currentCalYear, currentCalMonth;
+let userLat = 19.076, userLon = 72.8777;
+ 
+function getMoonPhaseIcon(tithiNum) {
+  if (tithiNum === 15) return '🌕';
+  if (tithiNum === 30 || tithiNum === 0) return '🌑';
+  if (tithiNum < 8) return '🌒';
+  if (tithiNum < 15) return '🌔';
+  if (tithiNum < 22) return '🌖';
+  return '🌘';
+}
+ 
+function renderPanchang(pData, JD, targetElem, isToday = true) {
+  const { tithi, nakshatra, yoga, karana, lunarMonth, sunRashi,
+          moonRashi, ritu, sunTimes, adhik, festivals, ayanamsha,
+          sunNirayana, moonNirayana } = pData;
+ 
+  const tithiName = tithi.idx >= 0 && tithi.idx < 14 ? TITHI_NAMES[tithi.idx] :
+                    (tithi.paksha === 'शुक्ल' ? 'पूर्णिमा' : 'अमावस्या');
+  const tithiEng  = tithi.idx >= 0 && tithi.idx < 14 ? TITHI_ENG[tithi.idx]  :
+                    (tithi.paksha === 'शुक्ल' ? 'Purnima (Full Moon)' : 'Amavasya (New Moon)');
+ 
+  const remainPct = ((1 - tithi.frac) * 100).toFixed(0);
+ 
+  const html = `
+  <div class="p-card">
+    <div class="p-card-icon">🌙</div>
+    <div class="p-label">Tithi · तिथि</div>
+    <div class="paksha-wrap">
+      <span class="moon-icon">${getMoonPhaseIcon(tithi.num)}</span>
+      <div>
+        <div class="p-value-deva">${tithiName}</div>
+        <div class="p-value-eng">${tithiEng}</div>
+      </div>
+    </div>
+    <div class="p-badge">${tithi.paksha} पक्ष · ${tithi.pakshaEng}</div>
+    <div class="p-detail">Tithi ${tithi.inPaksha} of ${tithi.paksha} · ${remainPct}% remaining<br>
+    Elongation: ${pData.elongation.toFixed(3)}°</div>
+  </div>
+ 
+  <div class="p-card">
+    <div class="p-card-icon">⭐</div>
+    <div class="p-label">Nakshatra · नक्षत्र</div>
+    <div class="p-value-deva">${NAKSHATRA_NAMES[nakshatra.idx]}</div>
+    <div class="p-value-eng">${NAKSHATRA_ENG[nakshatra.idx]}</div>
+    <div class="p-badge">Pada ${nakshatra.pada} · चरण ${nakshatra.pada}</div>
+    <div class="p-detail">Moon lon: ${moonNirayana.toFixed(3)}° (Nirayana)<br>
+    Ruler: ${NAKSHATRA_LORD[nakshatra.idx]}</div>
+  </div>
+ 
+  <div class="p-card">
+    <div class="p-card-icon">☀️</div>
+    <div class="p-label">Yoga · योग</div>
+    <div class="p-value-deva">${YOGA_NAMES[yoga.idx]}</div>
+    <div class="p-value-eng">${YOGA_ENG[yoga.idx]}</div>
+    <div class="p-badge">Yoga ${yoga.idx + 1} / 27</div>
+    <div class="p-detail">Sun+Moon = ${mod360(sunNirayana + moonNirayana).toFixed(2)}°<br>(Nirayana sum / 13.33°)</div>
+  </div>
+ 
+  <div class="p-card">
+    <div class="p-card-icon">🔮</div>
+    <div class="p-label">Karana · करण</div>
+    <div class="p-value-deva">${KARANA_NAMES[karana.idx]}</div>
+    <div class="p-value-eng">${KARANA_ENG[karana.idx]}</div>
+    <div class="p-badge">${karana.idx < 7 ? 'Chara (Movable)' : 'Sthira (Fixed)'}</div>
+    <div class="p-detail">Half-tithi unit (6° elongation)</div>
+  </div>
+ 
+  <div class="p-card">
+    <div class="p-card-icon">📅</div>
+    <div class="p-label">Masa · मास (Month)</div>
+    <div class="p-value-deva">${MASA_NAMES[lunarMonth]}${adhik?' (अधिक)':''}</div>
+    <div class="p-value-eng">${MASA_ENG[lunarMonth]} Masa${adhik?' · Adhika (Intercalary)':''}</div>
+    <div class="p-badge">Marathi: ${MASA_MARATHI[lunarMonth]}</div>
+    <div class="p-detail">Solar Rashi: ${RASHI_NAMES[sunRashi].d} (${sunNirayana.toFixed(1)}°)<br>
+    Ritu: ${RITU_NAMES[ritu] ? RITU_NAMES[ritu][0] : '—'}</div>
+  </div>
+ 
+  <div class="p-card">
+    <div class="p-card-icon">🌅</div>
+    <div class="p-label">Surya · सूर्य (Sun Times)</div>
+    <div class="sun-times-grid">
+      <div class="sun-cell">
+        <div class="sun-cell-label">SUNRISE · उदय</div>
+        <div class="sun-cell-val">${sunTimes.sunrise}</div>
+        <div class="sun-cell-deva">सूर्योदय</div>
+      </div>
+      <div class="sun-cell">
+        <div class="sun-cell-label">SUNSET · अस्त</div>
+        <div class="sun-cell-val">${sunTimes.sunset}</div>
+        <div class="sun-cell-deva">सूर्यास्त</div>
+      </div>
+    </div>
+    <div class="p-detail" style="margin-top:8px">
+      Daylight: ${sunTimes.daylightHours || '—'} hrs · Solar Noon: ${sunTimes.solarNoon || '—'}<br>
+      Ayanamsha (Lahiri): ${ayanamsha.toFixed(4)}°
+    </div>
+  </div>`;
+ 
+  targetElem.innerHTML = html;
+}
+ 
+function renderFestivalBanner(festivals) {
+  const el = document.getElementById('festivalBanner');
+  if (!festivals || festivals.length === 0) {
+    el.innerHTML = '';
+    return;
+  }
+  let html = '';
+  for (const f of festivals) {
+    html += `<div class="festival-banner">
+      <div class="fest-badge">✦ TODAY'S FESTIVAL · आज का पर्व ✦</div>
+      <div class="fest-name-deva">${f.d}</div>
+      <div class="fest-name-eng">${f.e}</div>
+      <div class="fest-desc">${f.desc}</div>
+    </div>`;
+  }
+  el.innerHTML = html;
+}
+
+function isCurrentTimeInSlot(startM, endM, hr, mn) {
+  const currentM = hr * 60 + mn;
+  // If end is greater than 1440, it crosses midnight. We adjust current time for comparison if needed.
+  let s = startM;
+  let e = endM;
+  let c = currentM;
+  
+  if (c < s && c + 1440 < e) {
+     c += 1440; // shift current time to next day context if it falls in the night slot after midnight
+  }
+  return c >= s && c < e;
+}
+
+function renderMuhurta(mData, targetElem, hr, mn, isHighlighting) {
+  const renderSlot = (slot, name, typeCls) => {
+    let activeCls = (isHighlighting && isCurrentTimeInSlot(slot.start, slot.end, hr, mn)) ? 'active' : '';
+    let startStr = minToStrMuhurta(slot.start);
+    let endStr = minToStrMuhurta(slot.end);
+    let nameHtml = typeof name === 'object' 
+        ? `<span class="m-slot-name">${name.d}</span><span class="m-slot-eng">${name.e}</span>` 
+        : `<span class="m-slot-name">${name.d}</span><span class="m-slot-eng">${name.e}</span>`;
+    return `<div class="m-slot ${typeCls} ${activeCls}">
+      <div>${nameHtml}</div>
+      <div class="m-slot-time">${startStr} – ${endStr}</div>
+    </div>`;
+  };
+
+  const abhijitActive = (isHighlighting && isCurrentTimeInSlot(mData.abhijit.start, mData.abhijit.end, hr, mn)) ? 'active' : '';
+
+  let html = `
+    <div class="m-highlight-box ${abhijitActive ? 'active' : ''}" style="${abhijitActive ? 'box-shadow: 0 0 30px rgba(200,151,58,0.3); border-color: #F0C060;' : ''}">
+      <div style="position:absolute;top:10px;right:10px;font-size:24px;opacity:0.2">✨</div>
+      <div class="m-hb-title">अभिजित मुहूर्त · Abhijit Muhurta</div>
+      <div class="m-hb-time">${minToStrMuhurta(mData.abhijit.start)} – ${minToStrMuhurta(mData.abhijit.end)}</div>
+      <div class="m-hb-desc">Most auspicious time of the day. Nullifies doshas.</div>
+    </div>
+
+    <div class="muhurta-grid">
+      <div class="m-card">
+        <div class="m-card-title">Day Choghadiya · दिन का चौघड़िया</div>
+        ${mData.dayChoghadiya.map(c => renderSlot(c, c, 'c-'+c.type)).join('')}
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">Night Choghadiya · रात का चौघड़िया</div>
+        ${mData.nightChoghadiya.map(c => renderSlot(c, c, 'c-'+c.type)).join('')}
+      </div>
+      <div class="m-card">
+        <div class="m-card-title">Inauspicious Timings · अशुभ समय</div>
+        ${renderSlot(mData.rahu, {d:'राहुकाल', e:'Rahu Kaal'}, 'c-bad')}
+        <div style="font-size:11px;color:var(--cream-faint);margin: -2px 0 8px 10px;font-style:italic">Period of Rahu. Avoid starting new work.</div>
+        ${renderSlot(mData.yama, {d:'यमगण्ड', e:'Yamaganda'}, 'c-bad')}
+        <div style="font-size:11px;color:var(--cream-faint);margin: -2px 0 8px 10px;font-style:italic">Period of Yama (Death). Highly unfavorable.</div>
+      </div>
+    </div>
+  `;
+  targetElem.innerHTML = html;
+}
+ 
+function renderRashiRow(sunRashi, moonRashi) {
+  const el = document.getElementById('rashiRow');
+  let html = '';
+  for (let i = 0; i < 12; i++) {
+    const r = RASHI_NAMES[i];
+    const isSun = i === sunRashi;
+    const isMoon = i === moonRashi;
+    html += `<div class="rashi-chip ${isSun?'sun-here':''} ${isMoon?'moon-here':''}">
+      <div class="rashi-symbol">${r.sym}</div>
+      <div class="rashi-name">${r.d}</div>
+      <div class="rashi-eng">${r.e.split(' / ')[0]}${isSun?' ☀️':''} ${isMoon?' 🌙':''}</div>
+    </div>`;
+  }
+  el.innerHTML = html;
+}
+ 
+function renderAdhikBanner(adhik) {
+  const el = document.getElementById('adhikMasaBanner');
+  if (!adhik) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="adhik-card">
+    <span class="adhik-icon">⚠️</span>
+    <div>
+      <div class="adhik-text-main">अधिक मास (Adhika Masa)</div>
+      <div class="adhik-text-sub">This is an intercalary month — the Sun does not transit to a new Rashi this lunar month. 
+      This extra month occurs approximately every 2.7 years to synchronize the lunar and solar calendars.</div>
+    </div>
+  </div>`;
+}
+ 
+// ============================================================
+// SECTION 15: CALENDAR GRID
+// ============================================================
+function changeCalMonth(delta) {
+  currentCalMonth += delta;
+  if (currentCalMonth > 11) { currentCalMonth = 0; currentCalYear++; }
+  if (currentCalMonth < 0)  { currentCalMonth = 11; currentCalYear--; }
+  renderCalendar(currentCalYear, currentCalMonth);
+}
+ 
+function renderCalendar(year, month) {
+  const monthNames = GREG_MONTHS;
+  document.getElementById('calMonthEng').textContent = `${monthNames[month]} ${year}`;
+ 
+  // Get lunar month for this Gregorian month
+  const midJD = getJD(year, month+1, 15, 6, 0, 0);
+  const midP = calculatePanchang(midJD, userLat, userLon);
+  document.getElementById('calMonthDeva').textContent =
+    `${MASA_NAMES[midP.lunarMonth]}${midP.adhik?' (अधिक)':''} · ${RITU_NAMES[midP.ritu][0]}`;
+ 
+  const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const today = new Date();
+  const todayD = today.getDate(), todayM = today.getMonth(), todayY = today.getFullYear();
+ 
+  let html = '';
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) html += '<div class="cal-cell empty"></div>';
+ 
+  for (let d = 1; d <= daysInMonth; d++) {
+    const JD = getJD(year, month+1, d, 6, 0, 0); // 6 AM IST
+    const pData = calculatePanchang(JD, userLat, userLon);
+    const isToday = (d===todayD && month===todayM && year===todayY);
+    const hasFest = pData.festivals.length > 0;
+    const tithiName = pData.tithi.idx>=0&&pData.tithi.idx<14 ? TITHI_NAMES[pData.tithi.idx] :
+                      (pData.tithi.paksha==='शुक्ल'?'पूर्णिमा':'अमावस्या');
+    const festText = pData.festivals.map(f => f.d.split('·')[0].trim()).join(', ');
+    const pakSym = pData.tithi.paksha==='शुक्ल' ? 'शु' : 'कृ';
+ 
+    html += `<div class="cal-cell ${isToday?'today':''} ${hasFest?'fest-day':''}">
+      <div class="cal-date-num">${d}</div>
+      <div class="cal-tithi-small">${pakSym}.${pData.tithi.inPaksha} ${tithiName.slice(0,5)}</div>
+      <div class="cal-nakshatra-small">${NAKSHATRA_NAMES[pData.nakshatra.idx].slice(0,5)}</div>
+      ${hasFest?`<div class="cal-fest-small">${festText.slice(0,22)}</div>`:''}
+    </div>`;
+  }
+ 
+  // Fill remaining cells
+  const totalCells = firstDay + daysInMonth;
+  const remaining = (7 - (totalCells % 7)) % 7;
+  for (let i = 0; i < remaining; i++) html += '<div class="cal-cell empty"></div>';
+ 
+  document.getElementById('calBody').innerHTML = html;
+}
+ 
+// ============================================================
+// SECTION 16: CUSTOM DATE CALCULATION
+// ============================================================
+function calculateCustomDate() {
+  const dateStr = document.getElementById('customDate').value;
+  const timeStr = document.getElementById('customTime').value;
+  const lat = parseFloat(document.getElementById('customLat').value) || 19.076;
+  const lon = parseFloat(document.getElementById('customLon').value) || 72.8777;
+ 
+  if (!dateStr) { alert('Please select a date'); return; }
+  const [yr,mo,dy] = dateStr.split('-').map(Number);
+  const [hr,mn] = timeStr.split(':').map(Number);
+  const JD = getJD(yr, mo, dy, hr, mn, 0);
+ 
+  const pData = calculatePanchang(JD, lat, lon);
+  const resultEl = document.getElementById('customResult');
+ 
+  const tithiName = pData.tithi.idx>=0&&pData.tithi.idx<14 ? TITHI_NAMES[pData.tithi.idx] :
+                    (pData.tithi.paksha==='शुक्ल'?'पूर्णिमा':'अमावस्या');
+ 
+  let festHtml = '';
+  if (pData.festivals.length > 0) {
+    festHtml = `<div style="background:rgba(255,153,51,0.08);border:1px solid rgba(255,153,51,0.3);border-radius:3px;padding:12px 16px;margin-bottom:14px">`;
+    for (const f of pData.festivals) {
+      festHtml += `<div style="font-family:'Noto Sans Devanagari',serif;font-size:20px;color:var(--saffron);font-weight:700">${f.d}</div>
+        <div style="font-size:13px;color:var(--cream-dim)">${f.e} — ${f.desc}</div>`;
+    }
+    festHtml += '</div>';
+  }
+ 
+  resultEl.innerHTML = `
+    ${festHtml}
+    <div class="panchang-grid" id="customGrid"></div>
+    <div style="margin-top:24px" id="customMuhurtaGrid"></div>
+  `;
+  renderPanchang(pData, JD, document.getElementById('customGrid'), false);
+  const mData = calculateMuhurta(JD, lat, lon);
+  renderMuhurta(mData, document.getElementById('customMuhurtaGrid'), hr, mn, true);
+}
+ 
+// ============================================================
+// SECTION 17: PLANETARY POSITION CALCULATOR
+// ============================================================
+ 
+// Orbital elements (Meeus Table 33.a, J2000.0, T in Julian centuries)
+// [L0, L1, a, e0, e1, i0, i1, omega0, omega1, Omega0, Omega1]
+const ORBITAL_ELEMENTS = {
+  mercury:  [252.250906, 149474.0722491, 0.387098310, 0.20563175, 0.000020407, 7.004986, -0.0059516, 77.455779, 0.1549517, 48.330766, -1.1861080],
+  venus:    [181.979801,  58519.2130302, 0.723329820, 0.00677188,-0.000047766, 3.394662, -0.0008568,131.563707, 0.0048646, 76.679920, -0.2780080],
+  earth:    [100.466457,  35999.3728565, 1.000001018, 0.01670863,-0.000042037, 0.000000,  0.0000000,102.937348, 0.3225557,174.873174, -0.2410908],
+  mars:     [355.433000,  19141.6964471, 1.523679342, 0.09341233, 0.000090484, 1.849726, -0.0081477,336.060234, 0.4438898, 49.558093, -0.2949846],
+  jupiter:  [ 34.351519,   3034.9056606, 5.202603209, 0.04849793, 0.000163225, 1.303267, -0.0054965, 14.331289, 0.2155908,100.464407,  0.1767232],
+  saturn:   [ 50.077444,   1222.1138488, 9.554909192, 0.05550825,-0.000346641, 2.488879, -0.0037140, 93.057237, 0.5665415,113.665503, -0.2566722],
+  uranus:   [314.055005,    429.8640561,19.218446062, 0.04629590,-0.000027337, 0.773197,  0.0006253,173.005291, 0.0400234, 74.229880,  0.0733249],
+  neptune:  [304.348665,    219.8833092,30.069922641, 0.00895439, 0.0000000682,1.769953,  0.0002557, 48.123691, 0.0291865,131.784057, -0.0061651]
+};
+ 
+function solveKepler(M_rad, e, tol=1e-9) {
+  let E = M_rad;
+  for (let i = 0; i < 50; i++) {
+    const dE = (M_rad - E + e*Math.sin(E)) / (1 - e*Math.cos(E));
+    E += dE;
+    if (Math.abs(dE) < tol) break;
+  }
+  return E;
+}
+ 
+function getHeliocentricXYZ(name, T) {
+  const el = ORBITAL_ELEMENTS[name];
+  const [L0,L1, a, e0,e1, i0,i1, om0,om1, Om0,Om1] = el;
+ 
+  const L = mod360(L0 + L1*T);       // Mean longitude (deg)
+  const e = e0 + e1*T;               // Eccentricity
+  const i = to_rad(i0 + i1*T);       // Inclination
+  const omega = to_rad(om0 + om1*T); // Longitude of perihelion
+  const Omega = to_rad(Om0 + Om1*T); // Longitude of ascending node
+  const argPeri = omega - Omega;     // Argument of perihelion
+ 
+  // Mean anomaly
+  const M = to_rad(mod360(L - to_deg(omega)));
+  const E = solveKepler(M, e);
+ 
+  // True anomaly
+  const v = 2*Math.atan2(Math.sqrt(1+e)*Math.sin(E/2), Math.sqrt(1-e)*Math.cos(E/2));
+ 
+  // Heliocentric distance
+  const r = a * (1 - e*Math.cos(E));
+ 
+  // Heliocentric ecliptic longitude and latitude
+  const sinAP = Math.sin(argPeri), cosAP = Math.cos(argPeri);
+  const sinOm = Math.sin(Omega),   cosOm = Math.cos(Omega);
+  const sini  = Math.sin(i),       cosi  = Math.cos(i);
+  const sinv  = Math.sin(v),       cosv  = Math.cos(v);
+ 
+  const X = r*(cosOm*(cosAP*cosv - sinAP*sinv) - sinOm*(sinAP*cosv + cosAP*sinv)*cosi);
+  const Y = r*(sinOm*(cosAP*cosv - sinAP*sinv) + cosOm*(sinAP*cosv + cosAP*sinv)*cosi);
+  const Z = r*sini*(sinAP*cosv + cosAP*sinv);
+ 
+  // Heliocentric ecliptic longitude/latitude for display
+  const helioLon = mod360(to_deg(Math.atan2(Y, X)));
+  const helioLat = to_deg(Math.asin(Z / r));
+ 
+  return { X, Y, Z, r, helioLon, helioLat };
+}
+ 
+function GMST(JD) {
+  // Greenwich Mean Sidereal Time in degrees
+  const T = getT(JD);
+  let gmst = 280.46061837 + 360.98564736629*(JD-2451545.0)
+           + 0.000387933*T*T - T*T*T/38710000;
+  return mod360(gmst);
+}
+ 
+function calcPlanetPositions() {
+  const dateStr = document.getElementById('posDate').value;
+  const timeStr = document.getElementById('posTime').value;
+  const lat = parseFloat(document.getElementById('posLat').value) || 19.076;
+  const lon = parseFloat(document.getElementById('posLon').value) || 72.8777;
+ 
+  if (!dateStr) { alert('Please select a date'); return; }
+  const [yr,mo,dy] = dateStr.split('-').map(Number);
+  const [hr,mn] = timeStr.split(':').map(Number);
+ 
+  // Convert IST to UTC (subtract 5:30)
+  const totalMinUTC = hr*60 + mn - 330;
+  const hrUTC = Math.floor((totalMinUTC + 1440) % 1440 / 60);
+  const mnUTC = (totalMinUTC + 1440) % 60;
+  const JD = getJD(yr, mo, dy, hrUTC, mnUTC, 0);
+  const T = getT(JD);
+ 
+  // Earth's position
+  const earth = getHeliocentricXYZ('earth', T);
+ 
+  // Obliquity
+  const eps = to_rad(23.439291111 - 0.013004167*T);
+  const sinEps = Math.sin(eps), cosEps = Math.cos(eps);
+ 
+  // Local Sidereal Time
+  const gmst = GMST(JD);
+  const LST  = mod360(gmst + lon); // degrees
+ 
+  const ayanamsha = getLahiriAyanamsha(JD);
+ 
+  const planets = [
+    {name:'mercury',deva:'बुध',eng:'Mercury',color:'#B5B5B5'},
+    {name:'venus',  deva:'शुक्र',eng:'Venus',  color:'#E8C87A'},
+    {name:'mars',   deva:'मंगल',eng:'Mars',    color:'#E57373'},
+    {name:'jupiter',deva:'बृहस्पति',eng:'Jupiter',color:'#F4A460'},
+    {name:'saturn', deva:'शनि',eng:'Saturn',  color:'#D4C5A9'},
+    {name:'uranus', deva:'अरुण',eng:'Uranus',  color:'#7FDBFF'},
+    {name:'neptune',deva:'वरुण',eng:'Neptune', color:'#1E88E5'}
+  ];
+ 
+  // Also add Sun and Moon
+  const sunPos = getSunPosition(JD);
+  const moonPos = getMoonPosition(JD);
+ 
+  let tbody = '';
+ 
+  // Sun row
+  const sunEcLon = sunPos.apparentLon;
+  const sunEcLat = 0;
+  const sunNirayana = mod360(sunEcLon - ayanamsha);
+  const sunRashi = RASHI_NAMES[Math.floor(sunNirayana/30)].d;
+  const sunHA = to_rad(mod360(LST - sunPos.RA));
+  const sunDec = to_rad(sunPos.Dec);
+  const sinAlt_sun = Math.sin(to_rad(lat))*Math.sin(sunDec) + Math.cos(to_rad(lat))*Math.cos(sunDec)*Math.cos(sunHA);
+  const sunAlt = to_deg(Math.asin(Math.max(-1,Math.min(1,sinAlt_sun))));
+  const cosAz_sun = (Math.sin(sunDec) - Math.sin(to_rad(lat))*sinAlt_sun) / (Math.cos(to_rad(lat))*Math.cos(Math.asin(Math.max(-1,Math.min(1,sinAlt_sun)))));
+  const sunAz = mod360(to_deg(Math.atan2(Math.sin(sunHA), cosAz_sun)));
+  const sunRA_h = Math.floor(sunPos.RA/15), sunRA_m = Math.floor((sunPos.RA/15-Math.floor(sunPos.RA/15))*60);
+  // ── Complete Sun row ─────────────────────────────────────
+  tbody += `<tr>
+    <td><span class="planet-name-td">☀️ सूर्य</span><span class="planet-eng-td">Sun</span></td>
+    <td class="deg-val">${sunEcLon.toFixed(3)}°</td>
+    <td class="deg-val">0.000°</td>
+    <td class="deg-val">${sunRA_h}h ${sunRA_m}m</td>
+    <td class="deg-val">${sunPos.Dec.toFixed(3)}°</td>
+    <td class="deg-val">${sunAlt.toFixed(2)}°
+      <span class="${sunAlt > 0 ? 'above-horizon' : 'below-horizon'}">${sunAlt > 0 ? ' ▲ Above' : ' ▼ Below'}</span>
+    </td>
+    <td class="deg-val">${sunAz.toFixed(2)}°</td>
+    <td><span class="pos-highlight">${sunRashi}</span></td>
+  </tr>`;
+ 
+  // ── Moon row ─────────────────────────────────────────────
+  const moonHA  = to_rad(mod360(LST - moonPos.RA));
+  const moonDec = to_rad(moonPos.Dec);
+  const sinAlt_moon = Math.sin(to_rad(lat)) * Math.sin(moonDec)
+                    + Math.cos(to_rad(lat)) * Math.cos(moonDec) * Math.cos(moonHA);
+  const moonAlt = to_deg(Math.asin(Math.max(-1, Math.min(1, sinAlt_moon))));
+  const cosAlt_moon = Math.cos(Math.asin(Math.max(-1, Math.min(1, sinAlt_moon))));
+  const cosAz_moon  = (Math.sin(moonDec) - Math.sin(to_rad(lat)) * sinAlt_moon)
+                    / (Math.cos(to_rad(lat)) * cosAlt_moon);
+  const moonAz = mod360(to_deg(Math.atan2(Math.sin(moonHA), cosAz_moon)));
+  const moonNirayana2 = mod360(moonPos.longitude - ayanamsha);
+  const moonRashi = RASHI_NAMES[Math.floor(moonNirayana2 / 30)].d;
+  const moonRA_h = Math.floor(moonPos.RA / 15);
+  const moonRA_m = Math.floor((moonPos.RA / 15 - moonRA_h) * 60);
+ 
+  tbody += `<tr>
+    <td><span class="planet-name-td">🌙 चंद्र</span><span class="planet-eng-td">Moon · ${moonPos.distance.toFixed(0)} km</span></td>
+    <td class="deg-val">${moonPos.longitude.toFixed(3)}°</td>
+    <td class="deg-val">${moonPos.latitude.toFixed(3)}°</td>
+    <td class="deg-val">${moonRA_h}h ${moonRA_m}m</td>
+    <td class="deg-val">${moonPos.Dec.toFixed(3)}°</td>
+    <td class="deg-val">${moonAlt.toFixed(2)}°
+      <span class="${moonAlt > 0 ? 'above-horizon' : 'below-horizon'}">${moonAlt > 0 ? ' ▲ Above' : ' ▼ Below'}</span>
+    </td>
+    <td class="deg-val">${moonAz.toFixed(2)}°</td>
+    <td><span class="pos-highlight">${moonRashi}</span></td>
+  </tr>`;
+ 
+  // ── Seven planets (Mercury → Neptune) ────────────────────
+  for (const p of planets) {
+    const ph  = getHeliocentricXYZ(p.name, T);
+ 
+    // Geocentric ecliptic rectangular coordinates
+    const gX = ph.X - earth.X;
+    const gY = ph.Y - earth.Y;
+    const gZ = ph.Z - earth.Z;
+    const gDist = Math.sqrt(gX * gX + gY * gY + gZ * gZ);
+ 
+    // Geocentric ecliptic longitude & latitude
+    const gLon = mod360(to_deg(Math.atan2(gY, gX)));
+    const gLat = to_deg(Math.asin(gZ / gDist));
+ 
+    // Rotate ecliptic → equatorial using obliquity ε
+    const gLonR = to_rad(gLon), gLatR = to_rad(gLat);
+    const Xeq = gDist * Math.cos(gLatR) * Math.cos(gLonR);
+    const Yeq = gDist * (Math.cos(gLatR) * Math.sin(gLonR) * cosEps - Math.sin(gLatR) * sinEps);
+    const Zeq = gDist * (Math.cos(gLatR) * Math.sin(gLonR) * sinEps + Math.sin(gLatR) * cosEps);
+ 
+    const RA_p  = mod360(to_deg(Math.atan2(Yeq, Xeq)));
+    const Dec_p = to_deg(Math.asin(Math.max(-1, Math.min(1, Zeq / gDist))));
+ 
+    // Altitude & Azimuth (horizontal coordinates)
+    const HA_p  = to_rad(mod360(LST - RA_p));
+    const DecR  = to_rad(Dec_p);
+    const sinAlt_p = Math.sin(to_rad(lat)) * Math.sin(DecR)
+                   + Math.cos(to_rad(lat)) * Math.cos(DecR) * Math.cos(HA_p);
+    const alt_p    = to_deg(Math.asin(Math.max(-1, Math.min(1, sinAlt_p))));
+    const cosAlt_p = Math.cos(Math.asin(Math.max(-1, Math.min(1, sinAlt_p))));
+    const cosAz_p  = (Math.sin(DecR) - Math.sin(to_rad(lat)) * sinAlt_p)
+                   / (Math.cos(to_rad(lat)) * cosAlt_p);
+    const az_p = mod360(to_deg(Math.atan2(Math.sin(HA_p), cosAz_p)));
+ 
+    // Nirayana (sidereal) Rashi
+    const pNirayana = mod360(gLon - ayanamsha);
+    const pRashi    = RASHI_NAMES[Math.floor(pNirayana / 30)].d;
+ 
+    const RA_h = Math.floor(RA_p / 15);
+    const RA_m = Math.floor((RA_p / 15 - RA_h) * 60);
+ 
+    tbody += `<tr>
+      <td><span class="planet-name-td" style="color:${p.color}">${p.deva}</span>
+          <span class="planet-eng-td">${p.eng} · ${(gDist * 149.598).toFixed(1)} Mkm</span></td>
+      <td class="deg-val">${gLon.toFixed(3)}°</td>
+      <td class="deg-val">${gLat.toFixed(3)}°</td>
+      <td class="deg-val">${RA_h}h ${RA_m}m</td>
+      <td class="deg-val">${Dec_p.toFixed(3)}°</td>
+      <td class="deg-val">${alt_p.toFixed(2)}°
+        <span class="${alt_p > 0 ? 'above-horizon' : 'below-horizon'}">${alt_p > 0 ? ' ▲ Above' : ' ▼ Below'}</span>
+      </td>
+      <td class="deg-val">${az_p.toFixed(2)}°</td>
+      <td><span class="pos-highlight">${pRashi}</span></td>
+    </tr>`;
+  }
+ 
+  document.getElementById('posTableBody').innerHTML = tbody;
+}
+ 
+// ============================================================
+// SECTION 18: 3D SOLAR SYSTEM  (Three.js r128)
+// ============================================================
+ 
+function closePlanetModal() {
+  document.getElementById('planetModal').classList.remove('show');
+}
+ 
+// Planet catalogue: visual radius is artistic (not to scale relative to orbits)
+const PLANET_INFO = [
+  {
+    name:'Mercury', deva:'बुध (Budha)',
+    color:0xB0AFA8, radius:0.40, orbit:5.8,  period:0.2408,
+    temp:'-180 to +430°C', year:'88 Earth days', dist:'57.9 million km',
+    vedic:'बुध · Karaka of intellect, speech, trade',
+    special:'Smallest planet. No atmosphere to retain heat — temperature swings 610°C between day and night. Covered in ancient craters.'
+  },
+  {
+    name:'Venus', deva:'शुक्र (Shukra)',
+    color:0xECC88A, radius:0.96, orbit:8.6,  period:0.6152,
+    temp:'+465°C average', year:'225 Earth days', dist:'108.2 million km',
+    vedic:'शुक्र · Karaka of beauty, love, luxury',
+    special:'Hottest planet despite not being closest to Sun. Rotates retrograde (east→west). A Venusian day (243 Earth days) is longer than its year.'
+  },
+  {
+    name:'Earth', deva:'पृथ्वी (Bhumi)',
+    color:0x4488EE, radius:1.00, orbit:12.0, period:1.0000,
+    temp:'-88 to +58°C', year:'365.25 days', dist:'149.6 million km',
+    vedic:'पृथ्वी · Prithvi — our sacred home',
+    special:'Only known planet harbouring life. 71% surface covered by ocean. Protected by a magnetic field and ozone layer. One large natural moon.'
+  },
+  {
+    name:'Mars', deva:'मंगल (Mangal)',
+    color:0xE06060, radius:0.54, orbit:16.8, period:1.8808,
+    temp:'-87 to -5°C', year:'687 Earth days', dist:'227.9 million km',
+    vedic:'मंगल · Karaka of energy, courage, land',
+    special:'Home to Olympus Mons (tallest volcano in solar system, 22 km high) and Valles Marineris (canyon 4000 km long). Thin CO₂ atmosphere.'
+  },
+  {
+    name:'Jupiter', deva:'बृहस्पति (Guru)',
+    color:0xF4A060, radius:2.60, orbit:23.5, period:11.862,
+    temp:'-145°C cloud tops', year:'4,333 Earth days', dist:'778.5 million km',
+    vedic:'बृहस्पति · Karaka of wisdom, expansion, dharma',
+    special:'Largest planet — mass exceeds all others combined. Its Great Red Spot is a storm raging for 350+ years. Has 95 known moons including Ganymede (larger than Mercury).'
+  },
+  {
+    name:'Saturn', deva:'शनि (Shani)',
+    color:0xD4C5A0, radius:2.20, orbit:30.5, period:29.457, hasRings:true,
+    temp:'-178°C', year:'10,756 Earth days', dist:'1,432 million km',
+    vedic:'शनि · Karaka of discipline, karma, longevity',
+    special:'Iconic ring system of ice & rock extends 282,000 km. Least dense planet — less dense than water. Has 146 confirmed moons including Titan with a thick atmosphere.'
+  },
+  {
+    name:'Uranus', deva:'अरुण (Aruna)',
+    color:0x80DDFF, radius:1.65, orbit:37.0, period:84.011,
+    temp:'-224°C minimum', year:'30,687 Earth days', dist:'2,867 million km',
+    vedic:'अरुण · Ancient Vedic deity of dawn',
+    special:'Rotates on its side with a 97.77° axial tilt — its poles receive more sunlight than its equator. Coldest planetary atmosphere in the solar system. 27 known moons.'
+  },
+  {
+    name:'Neptune', deva:'वरुण (Varuna)',
+    color:0x2266DD, radius:1.60, orbit:43.0, period:164.80,
+    temp:'-218°C', year:'60,190 Earth days', dist:'4,515 million km',
+    vedic:'वरुण · Vedic god of water, sky, and cosmic order',
+    special:'Strongest winds in the solar system at 2,100 km/h. Has 16 known moons; Triton orbits retrograde (opposite to Neptune\'s rotation) suggesting it was captured.'
+  }
+];
+ 
+let _solarScene, _solarCamera, _solarRenderer;
+let _solarPlanetMeshes = [];
+let _solarAngle  = 0;
+let _sCamTheta   = 0.55;
+let _sCamPhi     = 1.05;
+let _sCamR       = 72;
+let _solarDrag   = false;
+let _sPrev       = {x:0, y:0};
+let _sDragMoved  = false;
+let _labelEls    = [];
+const _vTmp      = {x:0, y:0, z:0};
+ 
+function initSolarSystem() {
+  const canvas = document.getElementById('solarCanvas');
+  const wrap   = canvas.parentElement;
+ 
+  function wSize() { return [wrap.clientWidth || 800, wrap.clientHeight || 580]; }
+  let [W, H] = wSize();
+ 
+  // Scene
+  _solarScene = new THREE.Scene();
+ 
+  // Camera
+  _solarCamera = new THREE.PerspectiveCamera(48, W / H, 0.1, 2000);
+  _solarUpdateCamera();
+ 
+  // Renderer
+  _solarRenderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  _solarRenderer.setSize(W, H);
+  _solarRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  _solarRenderer.setClearColor(0x000813, 1);
+ 
+  // ── Starfield ─────────────────────────────────────────────
+  const starVerts = new Float32Array(4000 * 3);
+  for (let i = 0; i < starVerts.length; i += 3) {
+    const r   = 280 + Math.random() * 500;
+    const th  = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    starVerts[i]   = r * Math.sin(phi) * Math.cos(th);
+    starVerts[i+1] = r * Math.sin(phi) * Math.sin(th);
+    starVerts[i+2] = r * Math.cos(phi);
+  }
+  const sGeo = new THREE.BufferGeometry();
+  sGeo.setAttribute('position', new THREE.BufferAttribute(starVerts, 3));
+  _solarScene.add(new THREE.Points(sGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.55 })));
+ 
+  // ── Lighting ──────────────────────────────────────────────
+  _solarScene.add(new THREE.AmbientLight(0x222211, 1.0));
+  const pLight = new THREE.PointLight(0xFFF5E0, 3.5, 350);
+  _solarScene.add(pLight);
+ 
+  // ── Sun ───────────────────────────────────────────────────
+  const sunMesh = new THREE.Mesh(
+    new THREE.SphereGeometry(3.0, 40, 40),
+    new THREE.MeshBasicMaterial({ color: 0xFDB813 })
+  );
+  _solarScene.add(sunMesh);
+  // Glow halos
+  [4.0, 4.8, 6.0].forEach((r, gi) => {
+    _solarScene.add(new THREE.Mesh(
+      new THREE.SphereGeometry(r, 32, 32),
+      new THREE.MeshBasicMaterial({
+        color: gi === 0 ? 0xFF9900 : 0xFF6600,
+        transparent: true,
+        opacity: 0.07 / (gi + 1),
+        side: THREE.BackSide
+      })
+    ));
+  });
+ 
+  // ── Ecliptic reference plane (faint grid) ─────────────────
+  const gridGeo = new THREE.BufferGeometry();
+  const gridPts = [];
+  for (let a = 0; a <= 128; a++) {
+    const ang = (a / 128) * Math.PI * 2;
+    gridPts.push(48 * Math.cos(ang), 0, 48 * Math.sin(ang));
+  }
+  gridGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(gridPts), 3));
+  _solarScene.add(new THREE.LineLoop(gridGeo,
+    new THREE.LineBasicMaterial({ color: 0x1a2a3a, transparent: true, opacity: 0.35 })));
+ 
+  // ── Planets ───────────────────────────────────────────────
+  _solarPlanetMeshes = [];
+  _labelEls = [];
+ 
+  // Label overlay div
+  const labelOverlay = document.createElement('div');
+  labelOverlay.style.cssText =
+    'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:hidden;';
+  wrap.appendChild(labelOverlay);
+ 
+  for (const pd of PLANET_INFO) {
+    // Orbit ring
+    const oPts = [];
+    for (let a = 0; a <= 128; a++) {
+      const ang = (a / 128) * Math.PI * 2;
+      oPts.push(new THREE.Vector3(pd.orbit * Math.cos(ang), 0, pd.orbit * Math.sin(ang)));
+    }
+    const oGeo = new THREE.BufferGeometry().setFromPoints(oPts);
+    _solarScene.add(new THREE.LineLoop(oGeo,
+      new THREE.LineBasicMaterial({ color: 0x2a3a4a, transparent: true, opacity: 0.45 })));
+ 
+    // Planet mesh
+    const mat = new THREE.MeshPhongMaterial({
+      color: pd.color,
+      emissive: pd.color,
+      emissiveIntensity: 0.06,
+      shininess: 35
+    });
+    const pMesh = new THREE.Mesh(new THREE.SphereGeometry(pd.radius, 32, 32), mat);
+    pMesh.userData = pd;
+    _solarScene.add(pMesh);
+    _solarPlanetMeshes.push(pMesh);
+ 
+    // Saturn rings
+    if (pd.hasRings) {
+      const rGeo = new THREE.RingGeometry(pd.radius * 1.45, pd.radius * 2.55, 64);
+      // Correct RingGeometry UVs so the ring looks like a flat disk
+      const pos = rGeo.attributes.position;
+      const uv  = rGeo.attributes.uv;
+      for (let vi = 0; vi < pos.count; vi++) {
+        uv.setXY(vi, (pos.getX(vi) / (pd.radius * 2.55) + 1) / 2,
+                     (pos.getY(vi) / (pd.radius * 2.55) + 1) / 2);
+      }
+      const rMesh = new THREE.Mesh(rGeo,
+        new THREE.MeshBasicMaterial({ color: 0xBBA870, side: THREE.DoubleSide, transparent: true, opacity: 0.68 }));
+      rMesh.rotation.x = Math.PI / 2.4;
+      pMesh.add(rMesh);
+    }
+ 
+    // HTML label element
+    const lEl = document.createElement('div');
+    lEl.textContent = pd.name;
+    lEl.style.cssText =
+      'position:absolute;font-family:"Cinzel Decorative",serif;font-size:8px;' +
+      'letter-spacing:1.5px;color:#C8973A;' +
+      'text-shadow:0 0 8px #000,0 0 4px #000,0 0 2px #000;' +
+      'pointer-events:none;transform:translate(-50%,-50%);white-space:nowrap;';
+    labelOverlay.appendChild(lEl);
+    _labelEls.push(lEl);
+  }
+ 
+  // ── Interaction ────────────────────────────────────────────
+  function startDrag(x, y) { _solarDrag = true; _sDragMoved = false; _sPrev = {x, y}; }
+  function moveDrag(x, y) {
+    if (!_solarDrag) return;
+    const dx = x - _sPrev.x, dy = y - _sPrev.y;
+    if (Math.abs(dx) + Math.abs(dy) > 2) _sDragMoved = true;
+    _sCamTheta -= dx * 0.007;
+    _sCamPhi    = Math.max(0.12, Math.min(1.42, _sCamPhi - dy * 0.007));
+    _sPrev = {x, y};
+    _solarUpdateCamera();
+  }
+  function endDrag() { _solarDrag = false; }
+ 
+  canvas.addEventListener('mousedown',  e => startDrag(e.clientX, e.clientY));
+  window.addEventListener('mouseup',    endDrag);
+  canvas.addEventListener('mousemove',  e => moveDrag(e.clientX, e.clientY));
+  canvas.addEventListener('touchstart', e => startDrag(e.touches[0].clientX, e.touches[0].clientY), {passive:true});
+  window.addEventListener('touchend',   endDrag);
+  canvas.addEventListener('touchmove',  e => moveDrag(e.touches[0].clientX, e.touches[0].clientY),  {passive:true});
+ 
+  canvas.addEventListener('wheel', e => {
+    _sCamR = Math.max(14, Math.min(130, _sCamR + e.deltaY * 0.055));
+    _solarUpdateCamera();
+    e.preventDefault();
+  }, { passive: false });
+ 
+  // Click → planet modal
+  canvas.addEventListener('click', e => {
+    if (_sDragMoved) return;
+    const rect  = canvas.getBoundingClientRect();
+    const mouse = new THREE.Vector2(
+      ((e.clientX - rect.left)  / rect.width)  * 2 - 1,
+     -((e.clientY - rect.top)   / rect.height) * 2 + 1
+    );
+    const rc = new THREE.Raycaster();
+    rc.setFromCamera(mouse, _solarCamera);
+    const hits = rc.intersectObjects(_solarPlanetMeshes);
+    if (hits.length > 0) { showPlanetModal(hits[0].object.userData); }
+  });
+ 
+  // Resize
+  window.addEventListener('resize', () => {
+    const [W2, H2] = wSize();
+    _solarCamera.aspect = W2 / H2;
+    _solarCamera.updateProjectionMatrix();
+    _solarRenderer.setSize(W2, H2);
+  });
+ 
+  _animateSolarSystem();
+}
+ 
+function _solarUpdateCamera() {
+  if (!_solarCamera) return;
+  _solarCamera.position.set(
+    _sCamR * Math.sin(_sCamPhi) * Math.sin(_sCamTheta),
+    _sCamR * Math.cos(_sCamPhi),
+    _sCamR * Math.sin(_sCamPhi) * Math.cos(_sCamTheta)
+  );
+  _solarCamera.lookAt(0, 0, 0);
+}
+ 
+const _projVec = new THREE.Vector3();
+ 
+function _animateSolarSystem() {
+  requestAnimationFrame(_animateSolarSystem);
+  _solarAngle += 0.0018;
+ 
+  const W = _solarRenderer.domElement.clientWidth;
+  const H = _solarRenderer.domElement.clientHeight;
+ 
+  for (let i = 0; i < PLANET_INFO.length; i++) {
+    const pd    = PLANET_INFO[i];
+    const angle = _solarAngle / pd.period + i * 1.18;
+ 
+    _solarPlanetMeshes[i].position.set(
+      pd.orbit * Math.cos(angle),
+      0,
+      pd.orbit * Math.sin(angle)
+    );
+    _solarPlanetMeshes[i].rotation.y += 0.012;
+ 
+    // Project planet top to screen for label
+    _projVec.copy(_solarPlanetMeshes[i].position);
+    _projVec.y += pd.radius + 1.4;
+    _projVec.project(_solarCamera);
+ 
+    if (_projVec.z < 1.0) {
+      const sx = (_projVec.x * 0.5 + 0.5) * W;
+      const sy = (_projVec.y * -0.5 + 0.5) * H;
+      _labelEls[i].style.left    = sx + 'px';
+      _labelEls[i].style.top     = sy + 'px';
+      _labelEls[i].style.display = 'block';
+    } else {
+      _labelEls[i].style.display = 'none';
+    }
+  }
+ 
+  _solarRenderer.render(_solarScene, _solarCamera);
+}
+ 
+function showPlanetModal(pd) {
+  document.getElementById('mName').textContent   = pd.name;
+  document.getElementById('mDeva').textContent   = pd.deva;
+  document.getElementById('mTemp').textContent   = pd.temp;
+  document.getElementById('mYear').textContent   = pd.year;
+  document.getElementById('mDist').textContent   = pd.dist;
+  document.getElementById('mVedic').textContent  = pd.vedic;
+  document.getElementById('mSpecial').textContent = pd.special;
+  document.getElementById('planetModal').classList.add('show');
+}
+ 
+// ============================================================
+// SECTION 19: MAIN INITIALIZATION
+// ============================================================
+function init() {
+  const now = new Date();
+  const yr  = now.getFullYear();
+  const mo  = now.getMonth() + 1;
+  const dy  = now.getDate();
+  const hr  = now.getHours();
+  const mn  = now.getMinutes();
+ 
+  // Julian Day for right now in IST
+  const JD = getJD(yr, mo, dy, hr, mn, 0);
+ 
+  // Day header
+  const WDAYS = ['रविवार','सोमवार','मंगलवार','बुधवार','गुरुवार','शुक्रवार','शनिवार'];
+  const dow   = new Date(yr, mo - 1, dy).getDay();
+  const dateEl = document.getElementById('todayDateDisplay');
+  if (dateEl) dateEl.textContent = `${WDAYS[dow]}, ${dy} ${GREG_MONTHS[mo-1]} ${yr}`;
+ 
+  // Panchang
+  const pData = calculatePanchang(JD, userLat, userLon);
+  renderPanchang(pData, JD, document.getElementById('panchaGrid'), true);
+  renderFestivalBanner(pData.festivals);
+  renderRashiRow(pData.sunRashi, pData.moonRashi);
+  renderAdhikBanner(pData.adhik);
+
+  // Muhurta
+  const mData = calculateMuhurta(JD, userLat, userLon);
+  renderMuhurta(mData, document.getElementById('muhurtaGrid'), hr, mn, true);
+ 
+  // Calendar
+  currentCalYear  = yr;
+  currentCalMonth = mo - 1;
+  renderCalendar(currentCalYear, currentCalMonth);
+ 
+  // Pre-fill date inputs with today
+  const dStr = `${yr}-${String(mo).padStart(2,'0')}-${String(dy).padStart(2,'0')}`;
+  const customDateEl = document.getElementById('customDate');
+  const posDateEl    = document.getElementById('posDate');
+  if (customDateEl) customDateEl.value = dStr;
+  if (posDateEl)    posDateEl.value    = dStr;
+ 
+  // 3D Solar system — small delay lets the page paint first
+  setTimeout(initSolarSystem, 300);
+}
+ 
+window.addEventListener('DOMContentLoaded', init);
+</script>
+ 
+<style>
+/* ── Supplemental styles (safe to duplicate) ── */
+.modal-stat-val {
+  font-size: 14px;
+  color: var(--cream);
+  font-weight: 600;
+}
+.modal-special {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(122,94,40,0.28);
+  font-size: 12px;
+  color: var(--cream-faint);
+  font-style: italic;
+  line-height: 1.65;
+}
+
+
+
+/* Better table responsiveness on small screens */
+@media(max-width:720px) {
+  .pos-table { font-size:11px; }
+  .pos-table th,.pos-table td { padding:7px 6px; }
+  .planet-name-td { font-size:13px; }
+  .deg-val { font-size:10px; }
+}
+</style>
+</body>
+</html>
